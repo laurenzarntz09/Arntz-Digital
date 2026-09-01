@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Arntz Digital — Websites für kleine &amp; mittlere Unternehmen</title>
+<meta name="description" content="Individuelle Websites für Handwerk, Gastronomie, Praxen, Kanzleien und mehr. Deutschlandweit, fair kalkuliert, schnell online und dauerhaft betreut." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#161210;
+    --bg-alt:#1f1a15;
+    --bg-alt-2:#292019;
+    --line:#39302400;
+    --line:#3a3024;
+    --line-soft:#2e261d;
+    --ember:#e8590c;
+    --ember-dim:#b8460b;
+    --spark:#f5a623;
+    --text-high:#f5efe5;
+    --text-mid:#c7bbaa;
+    --text-low:#8a7f6f;
+    --radius-lg:18px;
+    --radius-md:11px;
+    --radius-sm:6px;
+    --container:1140px;
+    --pad: clamp(20px, 5vw, 48px);
+    --section-py: clamp(64px, 10vw, 132px);
+    --ff-display:'Archivo', sans-serif;
+    --ff-body:'IBM Plex Sans', sans-serif;
+    --ff-mono:'IBM Plex Mono', monospace;
+    --shadow-card: 0 1px 0 rgba(255,255,255,.03) inset, 0 24px 48px -30px rgba(0,0,0,.9);
+  }
+
+  *,*::before,*::after{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text-mid);
+    font-family:var(--ff-body);
+    font-size:16px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    position:relative;
+    overflow-x:hidden;
+  }
+  body::after{
+    content:"";
+    position:fixed;
+    top:0; left:0; right:0;
+    height:3px;
+    background:linear-gradient(90deg, var(--ember), var(--spark), var(--ember));
+    z-index:100;
+  }
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:0;
+    opacity:.05;
+    background-image:radial-gradient(rgba(243,236,224,.9) 1px, transparent 1px);
+    background-size:3px 3px;
+    mix-blend-mode:overlay;
+  }
+  h1,h2,h3{
+    font-family:var(--ff-display);
+    color:var(--text-high);
+    margin:0;
+    letter-spacing:-.02em;
+    line-height:1.1;
+  }
+  p{ margin:0; }
+  a{ color:inherit; text-decoration:none; }
+  ul{ margin:0; padding:0; list-style:none; }
+  img,svg{ display:block; max-width:100%; }
+  button{ font-family:inherit; cursor:pointer; }
+
+  .container{ max-width:var(--container); margin:0 auto; padding-left:var(--pad); padding-right:var(--pad); }
+
+  :focus-visible{ outline:2px solid var(--ember); outline-offset:3px; }
+
+  .eyebrow{
+    font-family:var(--ff-mono);
+    font-size:.78rem;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--ember);
+    display:inline-flex;
+    align-items:center;
+    gap:.6em;
+    margin-bottom:1.1em;
+  }
+  .eyebrow::before{
+    content:"";
+    width:1.4em;
+    height:1px;
+    background:var(--ember);
+  }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:.5em;
+    padding:.9em 1.6em;
+    border-radius:999px;
+    font-family:var(--ff-body);
+    font-weight:600;
+    font-size:.96rem;
+    border:1px solid transparent;
+    transition:transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
+    white-space:nowrap;
+  }
+  .btn-primary{
+    background:var(--ember);
+    color:#1a1108;
+  }
+  .btn-primary:hover{
+    transform:translateY(-2px);
+    box-shadow:0 14px 28px -12px rgba(232,89,12,.55);
+  }
+  .btn-outline{
+    background:transparent;
+    border-color:var(--line);
+    color:var(--text-high);
+  }
+  .btn-outline:hover{
+    border-color:var(--ember);
+    color:var(--ember);
+  }
+
+  .reveal{
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity .7s ease, transform .7s ease;
+  }
+  .reveal.is-visible{ opacity:1; transform:none; }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(23,19,15,0);
+    border-bottom:1px solid transparent;
+    transition:background .3s ease, border-color .3s ease;
+  }
+  nav.is-scrolled{
+    background:rgba(23,19,15,.92);
+    backdrop-filter:blur(10px);
+    border-color:var(--line);
+  }
+  .nav-inner{
+    display:flex;
+    align-items:center;
+    gap:1.5rem;
+    padding-top:1.1rem;
+    padding-bottom:1.1rem;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:.65em;
+    font-family:var(--ff-display);
+    font-weight:800;
+    font-size:1.15rem;
+    color:var(--text-high);
+    margin-right:auto;
+  }
+  .brand-mark{
+    width:32px; height:32px;
+    border-radius:8px;
+    background:linear-gradient(155deg, var(--ember), var(--ember-dim));
+    display:flex; align-items:center; justify-content:center;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.25), 0 6px 14px -6px rgba(232,89,12,.7);
+    flex-shrink:0;
+    font-family:var(--ff-display);
+    font-weight:900;
+    font-size:1.15rem;
+    line-height:1;
+    color:#1a1108;
+    padding-bottom:1px;
+  }
+  .brand-mark svg{ width:18px; height:18px; color:#1a1108; }
+  .nav-links{
+    display:flex;
+    align-items:center;
+    font-size:.94rem;
+    color:var(--text-mid);
+  }
+  .nav-links a{ transition:color .2s ease; position:relative; margin-left:2.1rem; padding:.2em 0; }
+  .nav-links a:first-child{ margin-left:0; }
+  .nav-links a::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:-2px;
+    height:1.5px;
+    background:var(--ember);
+    transform:scaleX(0);
+    transform-origin:left;
+    transition:transform .25s ease;
+  }
+  .nav-links a:hover::after{ transform:scaleX(1); }
+  .nav-links a:hover{ color:var(--text-high); }
+  .nav-toggle{
+    display:none;
+    background:none; border:none;
+    width:38px; height:38px;
+    align-items:center; justify-content:center;
+    flex-direction:column; gap:5px;
+  }
+  .nav-toggle span{
+    width:20px; height:2px; background:var(--text-high); border-radius:2px;
+    transition:transform .25s ease, opacity .25s ease;
+  }
+  .nav-cta{ padding:.7em 1.3em; font-size:.88rem; flex-shrink:0; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding-top:clamp(96px, 14vw, 160px);
+    padding-bottom:clamp(80px, 10vw, 120px);
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute;
+    left:50%; bottom:-10%;
+    width:120%; height:60%;
+    transform:translateX(-50%);
+    background:radial-gradient(ellipse at center, rgba(232,89,12,.16), transparent 65%);
+    pointer-events:none;
+  }
+  .hero-particles{ position:absolute; inset:0; pointer-events:none; z-index:0; }
+  .ember-particle{
+    position:absolute;
+    bottom:-20px;
+    width:4px; height:4px;
+    border-radius:50%;
+    background:var(--spark);
+    box-shadow:0 0 8px 2px rgba(245,166,35,.7);
+    animation:rise 7s ease-in infinite;
+    opacity:0;
+  }
+  .ember-particle:nth-child(1){ left:6%; animation-delay:.2s; animation-duration:8s; }
+  .ember-particle:nth-child(2){ left:16%; animation-delay:2.1s; animation-duration:6.5s; width:3px; height:3px;}
+  .ember-particle:nth-child(3){ left:27%; animation-delay:.9s; animation-duration:9s; }
+  .ember-particle:nth-child(4){ left:38%; animation-delay:3.4s; animation-duration:7.2s; width:5px; height:5px;}
+  .ember-particle:nth-child(5){ left:49%; animation-delay:1.6s; animation-duration:6.8s; }
+  .ember-particle:nth-child(6){ left:60%; animation-delay:4.1s; animation-duration:8.4s; width:3px; height:3px;}
+  .ember-particle:nth-child(7){ left:71%; animation-delay:.5s; animation-duration:7.6s; }
+  .ember-particle:nth-child(8){ left:82%; animation-delay:2.8s; animation-duration:6.2s; width:5px; height:5px;}
+  .ember-particle:nth-child(9){ left:91%; animation-delay:3.9s; animation-duration:8.8s; }
+  .ember-particle:nth-child(10){ left:44%; animation-delay:5.2s; animation-duration:7s; width:3px; height:3px;}
+  @keyframes rise{
+    0%{ transform:translateY(0) translateX(0); opacity:0; }
+    12%{ opacity:.9; }
+    100%{ transform:translateY(-420px) translateX(18px); opacity:0; }
+  }
+
+  .hero-inner{ position:relative; z-index:1; max-width:760px; }
+  .hero h1{
+    font-size:clamp(2.5rem, 5.8vw, 4.3rem);
+    font-weight:900;
+    line-height:1.04;
+    margin-bottom:.5em;
+    letter-spacing:-.03em;
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:var(--ember);
+    background:linear-gradient(120deg, var(--spark), var(--ember));
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+  }
+  .hero-sub{
+    font-size:clamp(1.02rem, 1.6vw, 1.18rem);
+    color:var(--text-mid);
+    max-width:52ch;
+    margin-bottom:2.2em;
+  }
+  .hero-ctas{ display:flex; gap:1rem; flex-wrap:wrap; }
+
+  /* ---------- VALUE STRIP ---------- */
+  .value-strip{
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    background:var(--bg-alt);
+  }
+  .value-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:0;
+  }
+  .value-item{
+    padding: clamp(28px,4vw,44px) clamp(20px,3vw,36px);
+    border-left:1px solid var(--line);
+  }
+  .value-item:first-child{ border-left:none; }
+  .value-tag{
+    font-family:var(--ff-mono);
+    font-size:.72rem;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--spark);
+    margin-bottom:.9em;
+    display:block;
+  }
+  .value-item h3{ font-size:1.08rem; margin-bottom:.4em; font-weight:700; }
+  .value-item p{ font-size:.92rem; color:var(--text-mid); }
+
+  /* ---------- SECTION HEAD ---------- */
+  .section{ padding-top:var(--section-py); padding-bottom:var(--section-py); }
+  .section-head{ max-width:640px; margin-bottom:clamp(36px,5vw,60px); }
+  .section-head h2{ font-size:clamp(1.8rem, 3.6vw, 2.7rem); font-weight:900; line-height:1.1; margin-bottom:.5em; letter-spacing:-.025em; }
+  .section-head p{ color:var(--text-mid); font-size:1.05rem; line-height:1.6; }
+
+  /* ---------- GALLERY ---------- */
+  .filter-bar{ display:flex; flex-wrap:wrap; gap:.6rem; margin-bottom:2.6rem; }
+  .filter-btn{
+    background:transparent;
+    border:1px solid var(--line);
+    color:var(--text-mid);
+    padding:.55em 1.15em;
+    border-radius:999px;
+    font-size:.86rem;
+    font-family:var(--ff-body);
+    font-weight:500;
+    transition:all .2s ease;
+  }
+  .filter-btn:hover{ border-color:var(--text-mid); color:var(--text-high); }
+  .filter-btn.is-active{ background:var(--ember); border-color:var(--ember); color:#1a1108; font-weight:600; }
+
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:22px;
+  }
+  .ex-card{
+    perspective:1400px;
+    height:340px;
+    transition:transform .3s ease;
+  }
+  .ex-card.is-hidden{ display:none; }
+  .ex-card-inner{
+    position:relative;
+    width:100%; height:100%;
+    transition:transform .6s cubic-bezier(.4,.2,.2,1);
+    transform-style:preserve-3d;
+    border-radius:var(--radius-lg);
+  }
+  .ex-card:hover:not(.is-flipped){ transform:translateY(-4px); }
+  .ex-card.is-flipped .ex-card-inner{ transform:rotateY(180deg); }
+  .ex-card-face{
+    position:absolute; inset:0;
+    -webkit-backface-visibility:hidden;
+    backface-visibility:hidden;
+    border-radius:var(--radius-lg);
+    border:1px solid var(--line);
+    background:var(--bg-alt);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.04),
+      inset 0 -1px 0 rgba(0,0,0,.4),
+      0 14px 30px -18px rgba(0,0,0,.7);
+    display:flex; flex-direction:column;
+    overflow:hidden;
+  }
+  .ex-card:hover .ex-card-face,
+  .ex-card:focus-visible .ex-card-face{
+    border-color:var(--ember);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.04),
+      inset 0 -1px 0 rgba(0,0,0,.4),
+      0 0 0 1px var(--ember),
+      0 18px 36px -16px rgba(232,89,12,.4);
+  }
+  .ex-card-back{ transform:rotateY(180deg); justify-content:space-between; padding:26px; }
+
+  .ex-mock-bar{
+    display:flex; gap:5px; padding:12px 14px;
+    border-bottom:1px solid var(--line);
+    flex-shrink:0;
+  }
+  .ex-mock-bar span{ width:7px; height:7px; border-radius:50%; background:var(--line); }
+  .ex-mock-body{
+    flex:1;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:14px;
+    padding:20px;
+    background:
+      radial-gradient(circle at 30% 20%, rgba(232,89,12,.14), transparent 55%),
+      var(--bg-alt-2);
+  }
+  .ex-icon{
+    width:46px; height:46px;
+    border-radius:50%;
+    background:rgba(232,89,12,.12);
+    border:1px solid rgba(232,89,12,.35);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--ember);
+  }
+  .ex-icon svg{ width:22px; height:22px; }
+  .ex-skel{ width:64%; height:7px; border-radius:4px; background:var(--line); }
+  .ex-skel.short{ width:38%; }
+  .ex-pill{
+    margin-top:4px;
+    font-family:var(--ff-mono);
+    font-size:.66rem;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--text-low);
+    border:1px solid var(--line);
+    padding:.4em 1em;
+    border-radius:999px;
+  }
+  .ex-label{
+    padding:16px 20px;
+    border-top:1px solid var(--line);
+    display:flex; align-items:center; justify-content:space-between;
+    flex-shrink:0;
+  }
+  .ex-label h3{ font-size:1rem; font-weight:700; color:var(--text-high); }
+  .ex-cat{ font-family:var(--ff-mono); font-size:.66rem; color:var(--text-low); text-transform:uppercase; letter-spacing:.06em; }
+  .ex-flip-hint{ color:var(--text-low); }
+  .ex-flip-hint svg{ width:16px; height:16px; }
+
+  .ex-card-back h3{ font-size:1.05rem; font-weight:700; color:var(--text-high); margin-bottom:.55em; }
+  .ex-card-back p{ font-size:.88rem; color:var(--text-mid); margin-bottom:1.1em; }
+  .ex-feat{ display:flex; flex-direction:column; gap:.6em; }
+  .ex-feat li{
+    font-size:.85rem; color:var(--text-mid);
+    display:flex; align-items:flex-start; gap:.6em;
+  }
+  .ex-feat li::before{
+    content:"";
+    width:5px; height:5px; border-radius:50%;
+    background:var(--ember);
+    margin-top:.55em;
+    flex-shrink:0;
+  }
+  .ex-back-hint{ font-family:var(--ff-mono); font-size:.68rem; text-transform:uppercase; letter-spacing:.08em; color:var(--text-low); }
+
+  /* ---------- PROCESS ---------- */
+  .process-list{ position:relative; max-width:640px; }
+  .process-spine{
+    position:absolute; left:23px; top:8px; bottom:8px; width:2px;
+    background:var(--line);
+  }
+  .process-fill{
+    position:absolute; left:0; top:0; width:100%; height:0%;
+    background:linear-gradient(var(--ember), var(--spark));
+    transition:height 1.4s cubic-bezier(.2,.7,.3,1);
+  }
+  .process-item{
+    position:relative;
+    padding-left:64px;
+    padding-bottom:clamp(34px, 5vw, 52px);
+  }
+  .process-item:last-child{ padding-bottom:0; }
+  .process-num{
+    position:absolute; left:0; top:0;
+    width:48px; height:48px;
+    border-radius:50%;
+    background:var(--bg-alt);
+    border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--ff-mono);
+    font-size:.85rem;
+    color:var(--text-mid);
+    z-index:1;
+    transition:border-color .3s ease, color .3s ease, box-shadow .3s ease;
+  }
+  .process-item.in-view .process-num{
+    border-color:var(--ember);
+    color:var(--ember);
+    box-shadow:0 0 0 4px rgba(232,89,12,.12);
+  }
+  .process-item h3{ font-size:1.15rem; font-weight:700; margin-bottom:.4em; }
+  .process-item p{ font-size:.94rem; color:var(--text-mid); max-width:46ch; }
+
+  /* ---------- PRICING ---------- */
+  .pricing-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:22px;
+    margin-bottom:22px;
+  }
+  .price-card{
+    position:relative;
+    background:var(--bg-alt);
+    border:1px solid var(--line);
+    border-radius:var(--radius-lg);
+    padding:clamp(28px,3vw,38px);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.04),
+      inset 0 -1px 0 rgba(0,0,0,.4);
+  }
+  .price-card.is-feature{
+    border-color:var(--ember);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.04),
+      inset 0 -1px 0 rgba(0,0,0,.4),
+      0 0 0 1px var(--ember),
+      0 20px 40px -20px rgba(232,89,12,.35);
+  }
+  .price-tag{
+    position:absolute; top:-13px; right:24px;
+    background:var(--ember);
+    color:#1a1108;
+    font-family:var(--ff-mono);
+    font-size:.68rem;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    font-weight:600;
+    padding:.4em 1em;
+    border-radius:999px;
+  }
+  .price-name{
+    font-family:var(--ff-mono);
+    font-size:.76rem;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--text-low);
+    margin-bottom:1em;
+  }
+  .price-amount{
+    font-family:var(--ff-display);
+    font-size:2.5rem;
+    font-weight:800;
+    color:var(--text-high);
+    margin-bottom:.1em;
+  }
+  .price-note{ font-size:.82rem; color:var(--text-low); margin-bottom:1.6em; }
+  .price-plus{
+    display:flex;
+    flex-direction:column;
+    gap:.15em;
+    padding:.85em 1em;
+    margin-bottom:1.6em;
+    border:1px dashed var(--line);
+    border-radius:var(--radius-md);
+    background:rgba(232,89,12,.06);
+  }
+  .price-plus-amt{
+    font-family:var(--ff-display);
+    font-weight:800;
+    font-size:1.05rem;
+    color:var(--spark);
+  }
+  .price-plus-lbl{
+    font-size:.76rem;
+    color:var(--text-mid);
+  }
+  .price-feat{ display:flex; flex-direction:column; gap:.75em; }
+  .price-feat li{ display:flex; gap:.65em; font-size:.92rem; color:var(--text-mid); align-items:flex-start; }
+  .price-feat li::before{
+    content:"";
+    width:5px; height:5px; border-radius:50%;
+    background:var(--ember);
+    margin-top:.6em; flex-shrink:0;
+  }
+
+  .care-banner{
+    background:linear-gradient(120deg, var(--bg-alt-2), var(--bg-alt));
+    border:1px solid var(--line);
+    border-radius:var(--radius-lg);
+    padding:clamp(24px,3vw,36px);
+    display:flex; align-items:center; justify-content:space-between;
+    gap:20px; flex-wrap:wrap;
+    margin-bottom:clamp(48px,6vw,72px);
+  }
+  .care-title{
+    font-family:var(--ff-mono);
+    font-size:.76rem;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--spark);
+    margin-bottom:.6em;
+  }
+  .care-banner h3{ font-size:1.2rem; margin-bottom:.35em; }
+  .care-banner p{ font-size:.9rem; color:var(--text-mid); max-width:44ch; }
+  .care-price{ text-align:right; flex-shrink:0; }
+  .care-price .amt{ font-family:var(--ff-display); font-size:2.1rem; font-weight:800; color:var(--text-high); }
+  .care-price .unit{ font-size:.82rem; color:var(--text-low); }
+
+  /* FAQ */
+  .faq{ max-width:720px; border-top:1px solid var(--line); }
+  .faq-item{ border-bottom:1px solid var(--line); }
+  .faq-q{
+    width:100%;
+    background:none; border:none;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:1.3em 0;
+    color:var(--text-high);
+    font-size:1rem; font-weight:600;
+    text-align:left;
+  }
+  .faq-icon{
+    width:22px; height:22px; flex-shrink:0;
+    border-radius:50%;
+    border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    position:relative;
+    transition:border-color .2s ease, transform .3s ease;
+  }
+  .faq-icon::before,.faq-icon::after{
+    content:""; position:absolute; background:var(--text-mid);
+    transition:transform .3s ease, background .2s ease;
+  }
+  .faq-icon::before{ width:9px; height:1.4px; }
+  .faq-icon::after{ width:1.4px; height:9px; }
+  .faq-item.is-open .faq-icon{ border-color:var(--ember); transform:rotate(180deg); }
+  .faq-item.is-open .faq-icon::after{ transform:scaleY(0); }
+  .faq-item.is-open .faq-icon::before{ background:var(--ember); }
+  .faq-a{ max-height:0; overflow:hidden; transition:max-height .35s ease; }
+  .faq-item.is-open .faq-a{ max-height:200px; }
+  .faq-a p{ padding-bottom:1.4em; font-size:.92rem; color:var(--text-mid); max-width:60ch; }
+
+  /* ---------- CONTACT ---------- */
+  .contact{ background:var(--bg-alt); border-top:1px solid var(--line); }
+  .contact-grid{
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:clamp(30px,5vw,60px);
+    align-items:center;
+  }
+  .contact h2{ font-size:clamp(1.8rem,3.6vw,2.7rem); font-weight:800; line-height:1.14; margin-bottom:.5em; }
+  .contact-sub{ font-size:1.02rem; color:var(--text-mid); max-width:44ch; margin-bottom:1.8em; }
+  .contact-card{
+    background:var(--bg);
+    border:1px solid var(--line);
+    border-radius:var(--radius-lg);
+    padding:clamp(26px,3vw,34px);
+  }
+  .contact-row{
+    display:flex; align-items:flex-start; gap:14px;
+    padding:16px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .contact-row:last-child{ border-bottom:none; }
+  .contact-row .ic{
+    width:36px; height:36px; border-radius:9px;
+    background:rgba(232,89,12,.12);
+    border:1px solid rgba(232,89,12,.3);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--ember); flex-shrink:0;
+  }
+  .contact-row .ic svg{ width:17px; height:17px; }
+  .contact-row .lbl{ font-family:var(--ff-mono); font-size:.68rem; text-transform:uppercase; letter-spacing:.08em; color:var(--text-low); margin-bottom:.3em; }
+  .contact-row a, .contact-row span.val{ font-size:.98rem; color:var(--text-high); font-weight:500; }
+  .contact-row a:hover{ color:var(--ember); }
+
+  /* ---------- FOOTER ---------- */
+  footer{ padding:32px var(--pad); }
+  .footer-inner{
+    max-width:var(--container); margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between;
+    flex-wrap:wrap; gap:12px;
+    font-size:.82rem; color:var(--text-low);
+  }
+  .footer-links{ display:flex; gap:1.4rem; }
+  .footer-links a:hover{ color:var(--text-mid); }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:900px){
+    .value-grid{ grid-template-columns:repeat(2, 1fr); }
+    .value-item{ border-left:none; }
+    .value-item:nth-child(odd){ border-left:none; }
+    .value-item:nth-child(3), .value-item:nth-child(4){ border-top:1px solid var(--line); }
+    .value-item:nth-child(even){ border-left:1px solid var(--line); }
+    .gallery-grid{ grid-template-columns:repeat(2, 1fr); }
+    .contact-grid{ grid-template-columns:1fr; }
+  }
+  @media (max-width:780px){
+    .nav-links{
+      display:none;
+      position:absolute; top:100%; left:0; right:0;
+      background:rgba(23,19,15,.98);
+      backdrop-filter:blur(10px);
+      flex-direction:column;
+      align-items:flex-start;
+      gap:0;
+      border-bottom:1px solid var(--line);
+      padding:8px var(--pad) 18px;
+    }
+    .nav-links a{ padding:.85em 0; width:100%; border-bottom:1px solid var(--line); }
+    .nav-links a:last-child{ border-bottom:none; }
+    nav.is-open .nav-links{ display:flex; }
+    .nav-toggle{ display:flex; }
+    nav.is-open{ background:rgba(23,19,15,.98); }
+  }
+  @media (max-width:640px){
+    .value-grid{ grid-template-columns:1fr; }
+    .value-item{ border-left:none !important; border-top:1px solid var(--line); }
+    .value-item:first-child{ border-top:none; }
+    .gallery-grid{ grid-template-columns:1fr; }
+    .ex-card{ height:320px; }
+    .pricing-grid{ grid-template-columns:1fr; }
+    .care-banner{ flex-direction:column; align-items:flex-start; }
+    .care-price{ text-align:left; }
+    .hero-ctas .btn{ width:100%; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .ember-particle{ animation:none; display:none; }
+    .reveal{ opacity:1; transform:none; transition:none; }
+    .ex-card-inner{ transition:none; }
+    .process-fill{ transition:none; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="site-nav">
+  <div class="container nav-inner">
+    <a href="#start" class="brand">
+      <span class="brand-mark">A</span>
+      Arntz Digital
+    </a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="nav-links">
+      <a href="#beispiele">Beispiele</a>
+      <a href="#ablauf">Ablauf</a>
+      <a href="#preise">Preise</a>
+      <a href="#kontakt">Kontakt</a>
+    </div>
+    <a href="tel:+4917662564485" class="btn btn-primary nav-cta">Jetzt anrufen</a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero" id="start">
+    <div class="hero-particles" aria-hidden="true">
+      <span class="ember-particle"></span><span class="ember-particle"></span><span class="ember-particle"></span>
+      <span class="ember-particle"></span><span class="ember-particle"></span><span class="ember-particle"></span>
+      <span class="ember-particle"></span><span class="ember-particle"></span><span class="ember-particle"></span>
+      <span class="ember-particle"></span>
+    </div>
+    <div class="container hero-inner">
+      <div class="eyebrow">Websites für Handwerk, Dienstleister &amp; lokale Betriebe · Deutschlandweit</div>
+      <h1>Ihr Auftritt im Netz –<br>ohne Aufwand, ohne <em>Kompromisse</em>.</h1>
+      <p class="hero-sub">Individuelle Websites für kleine und mittlere Unternehmen – fair kalkuliert, in wenigen Tagen online und danach dauerhaft betreut. Beratung per Videocall, Telefon oder E-Mail, ganz gleich wo Ihr Betrieb sitzt.</p>
+      <div class="hero-ctas">
+        <a href="#beispiele" class="btn btn-primary">Beispiele entdecken</a>
+        <a href="tel:+4917662564485" class="btn btn-outline">Anrufen: 0176 62564485</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUE STRIP -->
+  <section class="value-strip">
+    <div class="container value-grid">
+      <div class="value-item reveal">
+        <span class="value-tag">Persönlich</span>
+        <h3>Kein Callcenter</h3>
+        <p>Wir sprechen persönlich mit Ihnen – per Videocall, Telefon oder vor Ort.</p>
+      </div>
+      <div class="value-item reveal">
+        <span class="value-tag">Deutschlandweit</span>
+        <h3>Überall erreichbar</h3>
+        <p>Ob München oder Hamburg – die Zusammenarbeit funktioniert komplett ortsunabhängig.</p>
+      </div>
+      <div class="value-item reveal">
+        <span class="value-tag">Festpreis</span>
+        <h3>Keine Überraschungen</h3>
+        <p>Ein klarer Preis vorher, derselbe Preis auf der Rechnung. Sonst nichts.</p>
+      </div>
+      <div class="value-item reveal">
+        <span class="value-tag">Schnell</span>
+        <h3>In Tagen online</h3>
+        <p>Vom Erstgespräch bis zur Live-Schaltung meist unter zwei Wochen.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="section" id="beispiele">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">Beispiele</div>
+        <h2>Sehen Sie, wie Ihr Betrieb online aussehen könnte.</h2>
+        <p>Von Handwerk bis Beratung – jede Website wird für die jeweilige Branche gestaltet. Zum Entdecken auf eine Karte klicken.</p>
+      </div>
+
+      <div class="filter-bar reveal" role="tablist" aria-label="Beispiele filtern">
+        <button class="filter-btn is-active" data-filter="all">Alle</button>
+        <button class="filter-btn" data-filter="handwerk">Handwerk</button>
+        <button class="filter-btn" data-filter="beauty">Friseure &amp; Beauty</button>
+        <button class="filter-btn" data-filter="gastronomie">Gastronomie</button>
+        <button class="filter-btn" data-filter="gesundheit">Gesundheit &amp; Fitness</button>
+        <button class="filter-btn" data-filter="beratung">Beratung &amp; Dienstleistung</button>
+      </div>
+
+      <div class="gallery-grid" id="gallery-grid">
+
+        <div class="ex-card reveal" data-cat="beauty" tabindex="0" role="button" aria-pressed="false" aria-label="Details zu Friseursalon anzeigen">
+          <div class="ex-card-inner">
+            <div class="ex-card-face ex-card-front">
+              <div class="ex-mock-bar"><span></span><span></span><span></span></div>
+              <div class="ex-mock-body">
+                <div class="ex-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.4"/><circle cx="6" cy="18" r="2.4"/><line x1="8.2" y1="7.6" x2="20" y2="18"/><line x1="8.2" y1="16.4" x2="20" y2="6"/></svg></div>
+                <div class="ex-skel"></div><div class="ex-skel short"></div>
+                <div class="ex-pill">Kontakt aufnehmen</div>
+              </div>
+              <div class="ex-label">
+                <div><h3>Friseursalon</h3><span class="ex-cat">Friseure &amp; Beauty</span></div>
+                <span class="ex-flip-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg></span>
+              </div>
+            </div>
+            <div class="ex-card-face ex-card-back">
+              <div>
+                <h3>Friseursalon</h3>
+                <p>Für Salons, die zeigen wollen, was sie können – und leicht erreichbar sein wollen.</p>
+                <ul class="ex-feat">
+                  <li>Preisliste &amp; Leistungen</li>
+                  <li>Instagram-Feed eingebunden</li>
+                  <li>Kontakt &amp; Anfahrt auf einen Blick</li>
+                </ul>
+              </div>
+              <span class="ex-back-hint">Zurück klicken ↺</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ex-card reveal" data-cat="beauty" tabindex="0" role="button" aria-pressed="false" aria-label="Details zu Kosmetikstudio anzeigen">
+          <div class="ex-card-inner">
+            <div class="ex-card-face ex-card-front">
+              <div class="ex-mock-bar"><span></span><span></span><span></span></div>
+              <div class="ex-mock-body">
+                <div class="ex-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c4 5 6 8 6 11a6 6 0 0 1-12 0c0-3 2-6 6-11z"/></svg></div>
+                <div class="ex-skel"></div><div class="ex-skel short"></div>
+                <div class="ex-pill">Kontakt aufnehmen</div>
+              </div>
+              <div class="ex-label">
+                <div><h3>Kosmetikstudio</h3><span class="ex-cat">Friseure &amp; Beauty</span></div>
+                <span class="ex-flip-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg></span>
+              </div>
+            </div>
+            <div class="ex-card-face ex-card-back">
+              <div>
+                <h3>Kosmetikstudio</h3>
+                <p>Für Studios, bei denen Behandlungen und Vertrauen im Mittelpunkt stehen.</p>
+                <ul class="ex-feat">
+                  <li>Behandlungsübersicht mit Preisen</li>
+                  <li>Vorher-Nachher-Galerie</li>
+                  <li>Kontaktanfrage per Formular</li>
+                </ul>
+              </div>
+              <span class="ex-back-hint">Zurück klicken ↺</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ex-card reveal" data-cat="handwerk" tabindex="0" role="button" aria-pressed="false" aria-label="Details zu Tischlerei anzeigen">
+          <div class="ex-card-inner">
+            <div class="ex-card-face ex-card-front">
+              <div class="ex-mock-bar"><span></span><span></span><span></span></div>
+              <div class="ex-mock-body">
+                <div class="ex-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5.4"/><circle cx="12" cy="12" r="1.8"/></svg></div>
+                <div class="ex-skel"></div><div class="ex-skel short"></div>
+                <div class="ex-pill">Projekte ansehen</div>
+              </div>
+              <div class="ex-label">
+                <div><h3>Tischlerei</h3><span class="ex-cat">Handwerk</span></div>
+                <span class="ex-flip-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg></span>
+              </div>
+            </div>
+            <div class="ex-card-face ex-card-back">
+              <div>
+                <h3>Tischlerei</h3>
+                <p>Für Schreiner und Tischler, deren Arbeit für sich sprechen soll.</p>
+                <ul class="ex-feat">
+                  <li>Projektgalerie mit Fotos</li>
+                  <li>Leistungsübersicht</li>
+                  <li>Angebot per Formular anfragen</li>
+                </ul>
+              </div>
+              <span class="ex-back-hint">Zurück klicken ↺</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ex-card reveal" data-cat="handwerk" tabindex="0" role="button" aria-pressed="false" aria-label="Details zu Elektrobetrieb anzeigen">
+          <div class="ex-card-inner">
+            <div class="ex-card-face ex-card-front">
+              <div class="ex-mock-bar"><span></span><span></span><span></span></div>
+              <div class="ex-mock-body">
+                <div class="ex-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><polygon points="13 2 4 14 11 14 10 22 20 9 13 9 13 2"/></svg></div>
+                <div class="ex-skel"></div><div class="ex-skel short"></div>
+                <div class="ex-pill">Notdienst</div>
+              </div>
+              <div class="ex-label">
+                <div><h3>Elektrobetrieb</h3><span class="ex-cat">Handwerk</span></div>
+                <span class="ex-flip-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg></span>
+              </div>
+            </div>
+            <div class="ex-card-face ex-card-back">
+              <div>
+                <h3>Elektrobetrieb</h3>
+                <p>Für Elektriker, bei denen im Notfall schnell die richtige Nummer gefunden werden muss.</p>
+                <ul class="ex-feat">
+                  <li>Notdienst-Button oben sichtbar</li>
+                  <li>Einsatzgebiete auf Karte</li>
+                  <li>Referenzprojekte</li>
+                </ul>
+              </div>
+              <span class="ex-back-hint">Zurück klicken ↺</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ex-card reveal" data-cat="handwerk" tabindex="0" role="button" aria-pressed="false" aria-label="Details zu Kfz-Werkstatt anzeigen">
+          <div class="ex-card-inner">
+            <div class="ex-card-face ex-card-front">
+              <div class="ex-mock-bar"><span></span><span></span><span></span></div>
+              <div class="ex-mock-body">
+                <div class="ex-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.8 2.8-2-2 2.8-2.8z"/></svg></div>
+                <div class="ex-skel"></div><div class="ex-skel short"></div>
+                <div class="ex-pill">Termin anfragen</div>
+              </div>
+              <div class="ex-label">
+                <div><h3>Kfz-Werkstatt</h3><span class="ex-cat">Handwerk</span></div>
+                <span class="ex-flip-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg></span>
+              </div>
+            </div>
+            <div class="ex-card-face ex-card-back">
+              <div>
+                <h3>Kfz-Werkstatt</h3>
+                <p>Für Werkstätten, die Vertrauen schaffen wollen, bevor der Kunde überhaupt anruft.</p>
+                <ul class="ex-feat">
+                  <li>Werkstattservices im Überblick</li>
+                  <li>Terminanfrage per Formular</li>
+                  <li>Google-Bewertungen eingebunden</li>
+                </ul>
+              </div>
+              <span class="ex-back-hint">Zurück klicken ↺</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ex-card reveal" data-cat="gastronomie" tabindex="0" role="button" aria-pressed="false" aria-label="Details zu Bäckerei anzeigen">
+          <div class="ex-card-inner">
+            <div class="ex-card-face ex-card-front">
+              <div class="ex-mock-bar"><span></span><span></span><span></span></div>
+              <div class="ex-mock-body">
+                <div class="ex-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="22" x2="12" y2="4"/><path d="M12 6c-2 0-3-1.5-3-3 2 0 3 1 3 3z"/><path d="M12 6c2 0 3-1.5 3-3-2 0-3 1-3 3z"/><path d="M12 10.5c-2 0-3-1.5-3-3 2 0 3 1 3 3z"/><path d="M12 10.5c2 0 3-1.5 3-3-2 0-3 1-3 3z"/><path d="M12 15c-2 0-3-1.5-3-3 2 0 3 1 3 3z"/><path d="M12 15c2 0 3-1.5 3-3-2 0-3 1-3 3z"/></svg></div>
+                <div class="ex-skel"></div><div class="ex-skel short"></div>
+                <div class="ex-pill">Heute frisch</div>
+              </div>
+              <div class="ex-label">
+                <div><h3>Bäckerei</h3><span class="ex-cat">Gastronomie</span></div>
+                <span class="ex-flip-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg></span>
+              </div>
+            </div>
+            <div class="ex-card-face ex-card-back">
+              <div>
+                <h3>Bäckerei</h3>
+                <p>Für Bäckereien und Konditoreien, die täglich zeigen wollen, was frisch ist.</p>
+                <ul class="ex-feat">
+                  <li>Tagesangebote leicht aktuell halten</li>
+                  <li>Öffnungszeiten gut sichtbar</li>
+                  <li>Vorbestellung per Formular</li>
+                </ul>
+              </div>
+              <span class="ex-back-hint">Zurück klicken ↺</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ex-card reveal" data-cat="gastronomie" tabindex="0" role="button" aria-pressed="false" aria-label="Details zu Restaurant anzeigen">
+          <div class="ex-card-inner">
+            <div class="ex-card-face ex-card-front">
+              <div class="ex-mock-bar"><span></span><span></span><span></span></div>
+              <div class="ex-mock-body">
+                <div class="ex-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v7a2 2 0 0 0 4 0V3"/><path d="M8 10v11"/><path d="M17 3c-1.5 1-2.5 3-2.5 5.5V12h2.5"/><path d="M17 12v9"/></svg></div>
+                <div class="ex-skel"></div><div class="ex-skel short"></div>
+                <div class="ex-pill">Tisch reservieren</div>
+              </div>
+              <div class="ex-label">
+                <div><h3>Restaurant</h3><span class="ex-cat">Gastronomie</span></div>
+                <span class="ex-flip-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg></span>
+              </div>
+            </div>
+            <div class="ex-card-face ex-card-back">
+              <div>
+                <h3>Restaurant</h3>
+                <p>Für Restaurants, die Gäste mit Ambiente und Speisekarte schon vorab überzeugen wollen.</p>
+                <ul class="ex-feat">
+                  <li>Speisekarte immer aktuell</li>
+                  <li>Tischreservierung online</li>
+                  <li>Stimmungsvolle Bildergalerie</li>
+                </ul>
+              </div>
+              <span class="ex-back-hint">Zurück klicken ↺</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ex-card reveal" data-cat="gastronomie" tabindex="0" role="button" aria-pressed="false" aria-label="Details zu Café anzeigen">
+          <div class="ex-card-inner">
+            <div class="ex-card-face ex-card-front">
+              <div class="ex-mock-bar"><span></span><span></span><span></span></div>
+              <div class="ex-mock-body">
+                <div class="ex-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h13v4a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5z"/><path d="M17 10h2.5a2.5 2.5 0 0 1 0 5H17"/><path d="M8 2c-.5 1 .5 2 0 3M12 2c-.5 1 .5 2 0 3"/></svg></div>
+                <div class="ex-skel"></div><div class="ex-skel short"></div>
+                <div class="ex-pill">Öffnungszeiten</div>
+              </div>
+              <div class="ex-label">
+                <div><h3>Café</h3><span class="ex-cat">Gastronomie</span></div>
+                <span class="ex-flip-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg></span>
+              </div>
+            </div>
+            <div class="ex-card-face ex-card-back">
+              <div>
+                <h3>Café</h3>
+                <p>Für Cafés, die ihre Atmosphäre und Angebote einladend präsentieren wollen.</p>
+                <ul class="ex-feat">
+                  <li>Öffnungszeiten gut sichtbar</li>
+                  <li>Kuchen &amp; Getränke im Blick</li>
+                  <li>Instagram-Feed eingebunden</li>
+                </ul>
+              </div>
+              <span class="ex-back-hint">Zurück klicken ↺</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ex-card reveal" data-cat="gastronomie" tabindex="0" role="button" aria-pressed="false" aria-label="Details zu Bar anzeigen">
+          <div class="ex-card-inner">
+            <div class="ex-card-face ex-card-front">
+              <div class="ex-mock-bar"><span></span><span></span><span></span></div>
+              <div class="ex-mock-body">
+                <div class="ex-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h14l-6 7v6"/><path d="M9 21h6"/><path d="M7 7h10"/></svg></div>
+                <div class="ex-skel"></div><div class="ex-skel short"></div>
+                <div class="ex-pill">Events &amp; Karte</div>
+              </div>
+              <div class="ex-label">
+                <div><h3>Bar &amp; Kneipe</h3><span class="ex-cat">Gastronomie</span></div>
+                <span class="ex-flip-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg></span>
+              </div>
+            </div>
+            <div class="ex-card-face ex-card-back">
+              <div>
+                <h3>Bar &amp; Kneipe</h3>
+                <p>Für Bars und Kneipen, die Stammgäste und Events an einem Ort bündeln wollen.</p>
+                <ul class="ex-feat">
+                  <li>Getränkekarte &amp; Specials</li>
+                  <li>Event-Ankündigungen</li>
+                  <li>Öffnungszeiten &amp; Anfahrt</li>
+                </ul>
+              </div>
+              <span class="ex-back-hint">Zurück klicken ↺</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ex-card reveal" data-cat="gesundheit" tabindex="0" role="button" aria-pressed="false" aria-label="Details zu Physiopraxis anzeigen">
+          <div class="ex-card-inner">
+            <div class="ex-card-face ex-card-front">
+              <div class="ex-mock-bar"><span></span><span></span><span></span></div>
+              <div class="ex-mock-body">
+                <div class="ex-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2 6 4-14 2 8h6"/></svg></div>
+                <div class="ex-skel"></div><div class="ex-skel short"></div>
+                <div class="ex-pill">Kontakt aufnehmen</div>
+              </div>
+              <div class="ex-label">
+                <div><h3>Physiopraxis</h3><span class="ex-cat">Gesundheit &amp; Fitness</span></div>
+                <span class="ex-flip-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg></span>
+              </div>
+            </div>
+            <div class="ex-card-face ex-card-back">
+              <div>
+                <h3>Physiopraxis</h3>
+                <p>Für Praxen, die Patienten alle Infos übersichtlich an einem Ort geben wollen.</p>
+                <ul class="ex-feat">
+                  <li>Leistungen &amp; Angebote</li>
+                  <li>Kursplan &amp; Öffnungszeiten</li>
+                  <li>Anfahrt mit Google Maps</li>
+                </ul>
+              </div>
+              <span class="ex-back-hint">Zurück klicken ↺</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ex-card reveal" data-cat="gesundheit" tabindex="0" role="button" aria-pressed="false" aria-label="Details zu Fitnessstudio anzeigen">
+          <div class="ex-card-inner">
+            <div class="ex-card-face ex-card-front">
+              <div class="ex-mock-bar"><span></span><span></span><span></span></div>
+              <div class="ex-mock-body">
+                <div class="ex-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5l11 11"/><path d="M4 8l2-2 2 2-2 2z" fill="currentColor"/><path d="M16 20l2-2 2-2-2-2-2 2z" fill="currentColor"/><path d="M2 12l2 2M20 12l2-2"/></svg></div>
+                <div class="ex-skel"></div><div class="ex-skel short"></div>
+                <div class="ex-pill">Probetraining</div>
+              </div>
+              <div class="ex-label">
+                <div><h3>Fitnessstudio</h3><span class="ex-cat">Gesundheit &amp; Fitness</span></div>
+                <span class="ex-flip-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg></span>
+              </div>
+            </div>
+            <div class="ex-card-face ex-card-back">
+              <div>
+                <h3>Fitnessstudio</h3>
+                <p>Für Studios, die neue Mitglieder mit einem klaren ersten Eindruck gewinnen wollen.</p>
+                <ul class="ex-feat">
+                  <li>Kursplan &amp; Öffnungszeiten</li>
+                  <li>Probetraining anfragen</li>
+                  <li>Eindrucksvolle Bildergalerie</li>
+                </ul>
+              </div>
+              <span class="ex-back-hint">Zurück klicken ↺</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ex-card reveal" data-cat="beratung" tabindex="0" role="button" aria-pressed="false" aria-label="Details zu Steuerkanzlei anzeigen">
+          <div class="ex-card-inner">
+            <div class="ex-card-face ex-card-front">
+              <div class="ex-mock-bar"><span></span><span></span><span></span></div>
+              <div class="ex-mock-body">
+                <div class="ex-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><line x1="8" y1="8" x2="16" y2="8"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="8" y1="16" x2="13" y2="16"/></svg></div>
+                <div class="ex-skel"></div><div class="ex-skel short"></div>
+                <div class="ex-pill">Mandant werden</div>
+              </div>
+              <div class="ex-label">
+                <div><h3>Steuerkanzlei</h3><span class="ex-cat">Beratung</span></div>
+                <span class="ex-flip-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg></span>
+              </div>
+            </div>
+            <div class="ex-card-face ex-card-back">
+              <div>
+                <h3>Steuerkanzlei</h3>
+                <p>Für Kanzleien, die Kompetenz und Seriosität sofort vermitteln wollen.</p>
+                <ul class="ex-feat">
+                  <li>Leistungen &amp; Fachgebiete</li>
+                  <li>Team-Vorstellung</li>
+                  <li>Mandantenanfrage per Formular</li>
+                </ul>
+              </div>
+              <span class="ex-back-hint">Zurück klicken ↺</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ex-card reveal" data-cat="beratung" tabindex="0" role="button" aria-pressed="false" aria-label="Details zu Rechtsanwaltskanzlei anzeigen">
+          <div class="ex-card-inner">
+            <div class="ex-card-face ex-card-front">
+              <div class="ex-mock-bar"><span></span><span></span><span></span></div>
+              <div class="ex-mock-body">
+                <div class="ex-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="3" x2="12" y2="21"/><path d="M5 7h14"/><path d="M5 7l-2 5a3 3 0 0 0 6 0z"/><path d="M19 7l-2 5a3 3 0 0 0 6 0z"/></svg></div>
+                <div class="ex-skel"></div><div class="ex-skel short"></div>
+                <div class="ex-pill">Erstberatung</div>
+              </div>
+              <div class="ex-label">
+                <div><h3>Rechtsanwalt</h3><span class="ex-cat">Beratung</span></div>
+                <span class="ex-flip-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg></span>
+              </div>
+            </div>
+            <div class="ex-card-face ex-card-back">
+              <div>
+                <h3>Rechtsanwalt</h3>
+                <p>Für Kanzleien, bei denen Mandanten schnell das passende Fachgebiet finden sollen.</p>
+                <ul class="ex-feat">
+                  <li>Rechtsgebiete übersichtlich</li>
+                  <li>Terminanfrage online</li>
+                  <li>Seriöses, ruhiges Design</li>
+                </ul>
+              </div>
+              <span class="ex-back-hint">Zurück klicken ↺</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="section" id="ablauf" style="background:var(--bg-alt); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">Ablauf</div>
+        <h2>Vom ersten Gespräch bis zur fertigen Website.</h2>
+        <p>Vier Schritte, immer in dieser Reihenfolge – damit Sie jederzeit wissen, wo Sie stehen.</p>
+      </div>
+
+      <div class="process-list" id="process-list">
+        <div class="process-spine"><div class="process-fill" id="process-fill"></div></div>
+
+        <div class="process-item" data-step="1">
+          <div class="process-num">01</div>
+          <h3>Gespräch</h3>
+          <p>Wir sprechen vor Ort oder am Telefon über Inhalte, Fotos und Wünsche. Meist dauert das 20 Minuten.</p>
+        </div>
+        <div class="process-item" data-step="2">
+          <div class="process-num">02</div>
+          <h3>Umsetzung</h3>
+          <p>Ihre Website entsteht und wird mit Ihnen abgestimmt, bis alles passt.</p>
+        </div>
+        <div class="process-item" data-step="3">
+          <div class="process-num">03</div>
+          <h3>Live-Schaltung</h3>
+          <p>Domain, Kontaktformular und Google Maps werden eingerichtet – Sie sind online.</p>
+        </div>
+        <div class="process-item" data-step="4">
+          <div class="process-num">04</div>
+          <h3>Betreuung</h3>
+          <p>Ab dann kümmern wir uns laufend um Technik, Sicherheit und kleine Änderungen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="section" id="preise">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">Preise</div>
+        <h2>Ein Paket, ein klarer Preis.</h2>
+        <p>Jedes Paket besteht aus dem einmaligen Aufbau und der laufenden Betreuung von 25&nbsp;€/Monat. Beides gehört zusammen – so bleibt Ihre Website dauerhaft sicher, aktuell und online.</p>
+      </div>
+
+      <div class="pricing-grid reveal">
+        <div class="price-card">
+          <div class="price-name">Basis</div>
+          <div class="price-amount">690&nbsp;€</div>
+          <div class="price-note">einmaliger Aufbau, inkl. MwSt.</div>
+          <div class="price-plus">
+            <span class="price-plus-amt">+ 25&nbsp;€ / Monat</span>
+            <span class="price-plus-lbl">Betreuung &amp; Betrieb (fester Bestandteil)</span>
+          </div>
+          <ul class="price-feat">
+            <li>3 Seiten (Start, Leistungen, Kontakt)</li>
+            <li>Professionelles Design</li>
+            <li>Optimiert für Handy &amp; Tablet</li>
+            <li>Kontaktformular</li>
+            <li>Google-Maps-Anbindung</li>
+          </ul>
+        </div>
+        <div class="price-card is-feature">
+          <span class="price-tag">Meisterstück</span>
+          <div class="price-name">Plus</div>
+          <div class="price-amount">990&nbsp;€</div>
+          <div class="price-note">einmaliger Aufbau, inkl. MwSt.</div>
+          <div class="price-plus">
+            <span class="price-plus-amt">+ 25&nbsp;€ / Monat</span>
+            <span class="price-plus-lbl">Betreuung &amp; Betrieb (fester Bestandteil)</span>
+          </div>
+          <ul class="price-feat">
+            <li>Alles aus Basis</li>
+            <li>5 Seiten (z. B. + Referenzen, Über uns)</li>
+            <li>Professionelle Texte inklusive</li>
+            <li>WhatsApp-Button für schnelle Anfragen</li>
+            <li>Hilfe bei Google My Business</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="care-banner reveal">
+        <div>
+          <div class="care-title">Im Monatsbeitrag immer enthalten</div>
+          <h3>Hosting, Sicherheit &amp; kleine Änderungen</h3>
+          <p>Domain, SSL, Backups sowie kleine Änderungswünsche das ganze Jahr über – damit Ihre Website dauerhaft läuft, ohne dass Sie sich um etwas kümmern müssen.</p>
+        </div>
+        <div class="care-price">
+          <div class="amt">25&nbsp;€</div>
+          <div class="unit">pro Monat</div>
+        </div>
+      </div>
+
+      <div class="faq reveal">
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">Ist die monatliche Betreuung Pflicht?<span class="faq-icon"></span></button>
+          <div class="faq-a"><p>Ja. Die 25&nbsp;€/Monat sind fester Bestandteil jedes Pakets – darin stecken Hosting, Domain, Sicherheit und laufende Pflege, damit Ihre Website dauerhaft zuverlässig online bleibt.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">Muss ich mich um Hosting oder Technik kümmern?<span class="faq-icon"></span></button>
+          <div class="faq-a"><p>Nein. Hosting, Domain und Sicherheitsupdates sind in der monatlichen Betreuung enthalten.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">Kann ich Texte oder Bilder später ändern lassen?<span class="faq-icon"></span></button>
+          <div class="faq-a"><p>Kleine Änderungen sind im monatlichen Beitrag enthalten, größere Umbauten rechnen wir gesondert und vorher abgesprochen ab.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">Wie lange dauert es, bis die Website online ist?<span class="faq-icon"></span></button>
+          <div class="faq-a"><p>Meist zwischen einer und zwei Wochen, abhängig davon, wie schnell Inhalte und Fotos vorliegen.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">Brauche ich eine eigene Domain?<span class="faq-icon"></span></button>
+          <div class="faq-a"><p>Nein, die Registrierung ist im Preis enthalten. Die Domain gehört trotzdem Ihnen.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="kontakt">
+    <div class="container section" style="padding-top:var(--section-py); padding-bottom:var(--section-py);">
+      <div class="contact-grid">
+        <div class="reveal">
+          <div class="eyebrow">Kontakt</div>
+          <h2>Bereit für Ihren Auftritt im Netz?</h2>
+          <p class="contact-sub">Melden Sie sich unverbindlich – per Telefon, E-Mail oder Videocall. Wir besprechen ortsunabhängig, wie Ihre Website aussehen könnte, egal wo in Deutschland Ihr Betrieb sitzt.</p>
+          <a href="tel:+4917662564485" class="btn btn-primary">Jetzt anrufen</a>
+        </div>
+        <div class="contact-card reveal">
+          <div class="contact-row">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.4 2.1L8.1 9.7a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.4c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.9 2.2z"/></svg></span>
+            <div><div class="lbl">Telefon</div><a href="tel:+4917662564485">0176 62564485</a></div>
+          </div>
+          <div class="contact-row">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l9 7 9-7"/><rect x="3" y="5" width="18" height="14" rx="2"/></svg></span>
+            <div><div class="lbl">E-Mail</div><a href="mailto:laurenzarntz09@gmail.com">laurenzarntz09@gmail.com</a></div>
+          </div>
+          <div class="contact-row">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M15 10l4.5-2.5v9L15 14"/><rect x="3" y="6" width="12" height="12" rx="2"/></svg></span>
+            <div><div class="lbl">Videocall</div><a href="mailto:laurenzarntz09@gmail.com?subject=Terminwunsch%20Videocall">Termin nach Vereinbarung</a></div>
+          </div>
+          <div class="contact-row">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+            <div><div class="lbl">Standort</div><span class="val">Raubling · deutschlandweit tätig</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <span>© 2026 Arntz Digital · Laurenz Arntz</span>
+    <div class="footer-links">
+      <a href="#">Impressum</a>
+      <a href="#">Datenschutz</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Sticky nav background
+  const nav = document.getElementById('site-nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('is-scrolled', window.scrollY > 8);
+  }, { passive:true });
+
+  // Mobile nav toggle
+  const navToggle = document.getElementById('nav-toggle');
+  navToggle.addEventListener('click', () => {
+    const open = nav.classList.toggle('is-open');
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  document.querySelectorAll('#nav-links a').forEach(a => {
+    a.addEventListener('click', () => {
+      nav.classList.remove('is-open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Flip cards
+  document.querySelectorAll('.ex-card').forEach(card => {
+    const toggle = () => {
+      const flipped = card.classList.toggle('is-flipped');
+      card.setAttribute('aria-pressed', flipped ? 'true' : 'false');
+    };
+    card.addEventListener('click', toggle);
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+    });
+  });
+
+  // Gallery filter
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.ex-card');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      const f = btn.dataset.filter;
+      cards.forEach(c => {
+        const match = f === 'all' || c.dataset.cat === f;
+        c.classList.toggle('is-hidden', !match);
+        if (!match) c.classList.remove('is-flipped');
+      });
+    });
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.closest('.faq-item');
+      const isOpen = item.classList.contains('is-open');
+      document.querySelectorAll('.faq-item').forEach(i => {
+        i.classList.remove('is-open');
+        i.querySelector('.faq-q').setAttribute('aria-expanded','false');
+      });
+      if (!isOpen) {
+        item.classList.add('is-open');
+        q.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+
+  // Scroll reveal (with fallback if IntersectionObserver is unavailable)
+  const processList = document.getElementById('process-list');
+  const processFill = document.getElementById('process-fill');
+  const processItems = document.querySelectorAll('.process-item');
+
+  if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold:0.15 });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    const processObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          processFill.style.height = '100%';
+          processObserver.unobserve(processList);
+        }
+      });
+    }, { threshold:0.2 });
+    processObserver.observe(processList);
+
+    const stepObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('in-view');
+      });
+    }, { threshold:0.5 });
+    processItems.forEach(item => stepObserver.observe(item));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('is-visible'));
+    processFill.style.height = '100%';
+    processItems.forEach(item => item.classList.add('in-view'));
+  }
+
+  // Safety net: never leave content permanently hidden
+  setTimeout(() => {
+    document.querySelectorAll('.reveal:not(.is-visible)').forEach(el => el.classList.add('is-visible'));
+  }, 2500);
+</script>
+
+</body>
+</html>
