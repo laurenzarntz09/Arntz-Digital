@@ -26,7 +26,7 @@
     --radius-md:12px;
     --radius-sm:7px;
     --container:1160px;
-    --pad:clamp(20px,5vw,52px);
+    --pad:clamp(22px,5vw,52px);
     --section-py:clamp(66px,10vw,138px);
     --ff-display:'Fraunces', Georgia, serif;
     --ff-body:'Inter', sans-serif;
@@ -287,14 +287,27 @@
   }
   @media (max-width:640px){
     .value-grid{ grid-template-columns:1fr; }
-    .value-item{ border-left:none !important; border-top:1px solid var(--line); }
+    .value-item{ border-left:none !important; border-top:1px solid var(--line); padding:26px var(--pad); }
     .value-item:first-child{ border-top:none; }
     .gallery-grid{ grid-template-columns:1fr; }
     .ex-card{ height:320px; }
     .pricing-grid{ grid-template-columns:1fr; }
     .care-banner{ flex-direction:column; align-items:flex-start; }
     .care-price{ text-align:left; }
+    .hero-ctas{ flex-direction:column; align-items:stretch; }
     .hero-ctas .btn{ width:100%; }
+    .hero h1 br{ display:none; }
+    .hero h1{ font-size:2.35rem; line-height:1.1; }
+    .hero-sub{ font-size:1.02rem; }
+    .section-head h2{ font-size:1.7rem; }
+    .nav-cta{ display:none; }
+    .faq-q{ font-size:.96rem; }
+    .price-amount{ font-size:2.4rem; }
+  }
+  @media (max-width:400px){
+    .brand{ font-size:1.05rem; }
+    .filter-btn{ padding:.5em 1em; font-size:.82rem; }
+    .brand-mark{ width:30px; height:30px; font-size:1.05rem; }
   }
   @media (prefers-reduced-motion:reduce){
     html{ scroll-behavior:auto; }
@@ -868,6 +881,10 @@
         <div class="faq-item">
           <button class="faq-q" aria-expanded="false">Wie lange dauert es, bis die Website online ist?<span class="faq-icon"></span></button>
           <div class="faq-a"><p>Meist zwischen einer und zwei Wochen, abhängig davon, wie schnell Inhalte und Fotos vorliegen.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">Kann ich die Website steuerlich absetzen?<span class="faq-icon"></span></button>
+          <div class="faq-a"><p>In der Regel ja: Für Unternehmen und Selbstständige zählen Website-Kosten üblicherweise zu den Betriebsausgaben und können steuerlich geltend gemacht werden. Wie genau (sofort oder über mehrere Jahre) hängt vom Einzelfall ab – das klärt am besten Ihr Steuerberater.</p></div>
         </div>
         <div class="faq-item">
           <button class="faq-q" aria-expanded="false">Brauche ich eine eigene Domain?<span class="faq-icon"></span></button>
