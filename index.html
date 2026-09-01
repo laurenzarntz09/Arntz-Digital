@@ -35,7 +35,7 @@
     --shadow-md:0 2px 6px rgba(28,26,23,.05), 0 18px 40px -24px rgba(28,26,23,.28);
   }
   *,*::before,*::after{ box-sizing:border-box; }
-  html{ scroll-behavior:smooth; }
+  html{ scroll-behavior:smooth; overflow-x:hidden; width:100%; }
   body{
     margin:0;
     background:var(--paper);
@@ -45,6 +45,9 @@
     line-height:1.65;
     -webkit-font-smoothing:antialiased;
     overflow-x:hidden;
+    width:100%;
+    max-width:100%;
+    position:relative;
   }
   h1,h2,h3{
     font-family:var(--ff-display);
@@ -133,7 +136,7 @@
   .hero{ position:relative; padding-top:clamp(72px,11vw,128px); padding-bottom:clamp(64px,9vw,110px); overflow:hidden; }
   .hero::before{
     content:""; position:absolute; top:-20%; right:-10%;
-    width:640px; height:640px; border-radius:50%;
+    width:min(640px,80vw); height:min(640px,80vw); border-radius:50%;
     background:radial-gradient(circle, rgba(181,80,42,.07), transparent 68%);
     pointer-events:none;
   }
