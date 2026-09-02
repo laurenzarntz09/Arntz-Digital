@@ -202,6 +202,9 @@
   .ex-feat li{ font-size:.85rem; color:var(--ink-soft); display:flex; align-items:flex-start; gap:.6em; }
   .ex-feat li::before{ content:""; width:5px; height:5px; border-radius:50%; background:var(--accent); margin-top:.55em; flex-shrink:0; }
   .ex-back-hint{ font-family:var(--ff-mono); font-size:.66rem; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); }
+  .ex-example-btn{ display:inline-flex; align-items:center; gap:.5em; margin-top:.4em; padding:.6em 1.2em; background:var(--accent); color:#fff; border-radius:999px; font-family:var(--ff-body); font-weight:600; font-size:.8rem; transition:.2s; align-self:flex-start; }
+  .ex-example-btn:hover{ background:var(--accent-soft); transform:translateY(-1px); }
+  .ex-example-btn svg{ width:14px; height:14px; }
 
   /* PROCESS */
   .process-list{ position:relative; max-width:680px; }
@@ -424,7 +427,7 @@
                   <li>Kontakt &amp; Anfahrt auf einen Blick</li>
                 </ul>
               </div>
-              <span class="ex-back-hint">Zurück klicken ↺</span>
+              <a href="beispiel-friseur.html" target="_blank" rel="noopener" class="ex-example-btn" onclick="event.stopPropagation()">Beispiel ansehen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
             </div>
           </div>
         </div>
@@ -482,7 +485,7 @@
                   <li>Angebot per Formular anfragen</li>
                 </ul>
               </div>
-              <span class="ex-back-hint">Zurück klicken ↺</span>
+              <a href="beispiel-tischlerei.html" target="_blank" rel="noopener" class="ex-example-btn" onclick="event.stopPropagation()">Beispiel ansehen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
             </div>
           </div>
         </div>
@@ -598,7 +601,7 @@
                   <li>Stimmungsvolle Bildergalerie</li>
                 </ul>
               </div>
-              <span class="ex-back-hint">Zurück klicken ↺</span>
+              <a href="beispiel-restaurant.html" target="_blank" rel="noopener" class="ex-example-btn" onclick="event.stopPropagation()">Beispiel ansehen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
             </div>
           </div>
         </div>
@@ -821,16 +824,16 @@
       <div class="section-head reveal">
         <div class="eyebrow">Preise</div>
         <h2>Ein Paket, ein klarer Preis.</h2>
-        <p>Jedes Paket besteht aus dem einmaligen Aufbau und der laufenden Betreuung von 25&nbsp;€/Monat. Beides gehört zusammen – so bleibt Ihre Website dauerhaft sicher, aktuell und online.</p>
+        <p>Jedes Paket besteht aus dem einmaligen Aufbau und der laufenden Betreuung von 21&nbsp;€/Monat. Beides gehört zusammen – so bleibt Ihre Website dauerhaft sicher, aktuell und online. Alle Preise verstehen sich netto zzgl. MwSt. und richten sich an Gewerbetreibende.</p>
       </div>
 
       <div class="pricing-grid reveal">
         <div class="price-card">
           <div class="price-name">Basis</div>
-          <div class="price-amount">690&nbsp;€</div>
-          <div class="price-note">einmaliger Aufbau, inkl. MwSt.</div>
+          <div class="price-amount">495&nbsp;€</div>
+          <div class="price-note">einmaliger Aufbau, zzgl. MwSt.</div>
           <div class="price-plus">
-            <span class="price-plus-amt">+ 25&nbsp;€ / Monat</span>
+            <span class="price-plus-amt">+ 21&nbsp;€ / Monat</span>
             <span class="price-plus-lbl">Betreuung &amp; Betrieb (fester Bestandteil)</span>
           </div>
           <ul class="price-feat">
@@ -844,10 +847,10 @@
         <div class="price-card is-feature">
           <span class="price-tag">Meisterstück</span>
           <div class="price-name">Plus</div>
-          <div class="price-amount">990&nbsp;€</div>
-          <div class="price-note">einmaliger Aufbau, inkl. MwSt.</div>
+          <div class="price-amount">663&nbsp;€</div>
+          <div class="price-note">einmaliger Aufbau, zzgl. MwSt.</div>
           <div class="price-plus">
-            <span class="price-plus-amt">+ 25&nbsp;€ / Monat</span>
+            <span class="price-plus-amt">+ 21&nbsp;€ / Monat</span>
             <span class="price-plus-lbl">Betreuung &amp; Betrieb (fester Bestandteil)</span>
           </div>
           <ul class="price-feat">
@@ -867,8 +870,8 @@
           <p>Domain, SSL, Backups sowie kleine Änderungswünsche das ganze Jahr über – damit Ihre Website dauerhaft läuft, ohne dass Sie sich um etwas kümmern müssen.</p>
         </div>
         <div class="care-price">
-          <div class="amt">25&nbsp;€</div>
-          <div class="unit">pro Monat</div>
+          <div class="amt">21&nbsp;€</div>
+          <div class="unit">pro Monat, zzgl. MwSt.</div>
         </div>
       </div>
 
@@ -934,8 +937,8 @@
   <div class="footer-inner">
     <span>© 2026 Arntz Digital · Laurenz Arntz</span>
     <div class="footer-links">
-      <a href="#">Impressum</a>
-      <a href="#">Datenschutz</a>
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
     </div>
   </div>
 </footer>

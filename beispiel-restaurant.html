@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ristorante Da Vinci — Italienische Küche mit Herz</title>
+<meta name="description" content="Ristorante Da Vinci – authentische italienische Küche, hausgemachte Pasta und ausgewählte Weine in gemütlicher Atmosphäre." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Mulish:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night:#1a1512;
+    --night-2:#241d18;
+    --espresso:#2f251e;
+    --olive:#5c5138;
+    --gold:#c9a24a;
+    --gold-light:#e0c37e;
+    --terra:#b5643c;
+    --cream:#f7f1e6;
+    --cream-2:#efe6d5;
+    --paper:#fbf6ec;
+    --ink:#231c16;
+    --ink-soft:#5f5346;
+    --ink-mute:#9a8b78;
+    --line:#e6dcc8;
+    --line-dark:#3a2f26;
+    --radius:14px;
+    --radius-lg:22px;
+    --pad:clamp(22px,5vw,56px);
+    --section-py:clamp(66px,9vw,124px);
+    --container:1160px;
+    --ff-display:'Playfair Display',Georgia,serif;
+    --ff-body:'Mulish',sans-serif;
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; overflow-x:hidden; width:100%; }
+  body{ margin:0; background:var(--paper); color:var(--ink-soft); font-family:var(--ff-body); font-size:16.5px; line-height:1.7; font-weight:300; -webkit-font-smoothing:antialiased; overflow-x:hidden; width:100%; max-width:100%; }
+  h1,h2,h3{ font-family:var(--ff-display); color:var(--ink); margin:0; font-weight:600; line-height:1.14; }
+  p{ margin:0; }
+  a{ color:inherit; text-decoration:none; }
+  ul{ margin:0; padding:0; list-style:none; }
+  img,svg{ display:block; max-width:100%; }
+  button{ font-family:inherit; cursor:pointer; }
+  .container{ max-width:var(--container); margin:0 auto; padding-left:var(--pad); padding-right:var(--pad); }
+  :focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
+
+  .eyebrow{ font-family:var(--ff-body); font-size:.76rem; letter-spacing:.3em; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:1.2em; display:inline-block; }
+
+  .btn{ display:inline-flex; align-items:center; justify-content:center; gap:.5em; padding:1em 2em; border-radius:2px; font-family:var(--ff-body); font-weight:600; font-size:.82rem; letter-spacing:.14em; text-transform:uppercase; border:1px solid transparent; transition:.25s; white-space:nowrap; }
+  .btn-gold{ background:var(--gold); color:var(--night); }
+  .btn-gold:hover{ background:var(--gold-light); transform:translateY(-2px); }
+  .btn-outline-gold{ border-color:var(--gold); color:var(--gold); }
+  .btn-outline-gold:hover{ background:var(--gold); color:var(--night); }
+  .btn-dark{ border-color:var(--ink); color:var(--ink); }
+  .btn-dark:hover{ background:var(--ink); color:var(--cream); }
+
+  /* NAV */
+  nav{ position:sticky; top:0; z-index:50; background:rgba(26,21,18,0); transition:.3s; border-bottom:1px solid transparent; }
+  nav.is-scrolled{ background:rgba(26,21,18,.94); backdrop-filter:blur(10px); border-color:var(--line-dark); }
+  .nav-inner{ display:flex; align-items:center; gap:1.5rem; padding:1.2rem var(--pad); max-width:var(--container); margin:0 auto; }
+  .brand{ margin-right:auto; line-height:1.05; }
+  .brand b{ font-family:var(--ff-display); font-weight:700; font-size:1.5rem; color:var(--cream); display:block; letter-spacing:.01em; }
+  .brand span{ font-size:.64rem; letter-spacing:.3em; text-transform:uppercase; color:var(--gold); }
+  .nav-links{ display:flex; align-items:center; font-size:.8rem; letter-spacing:.14em; text-transform:uppercase; color:rgba(247,241,230,.85); font-weight:500; }
+  .nav-links a{ margin-left:2.1rem; transition:color .2s; }
+  .nav-links a:first-child{ margin-left:0; }
+  .nav-links a:hover{ color:var(--gold); }
+  .nav-cta{ padding:.7em 1.4em; font-size:.72rem; flex-shrink:0; }
+  .nav-toggle{ display:none; background:none; border:none; width:42px; height:42px; flex-direction:column; align-items:center; justify-content:center; gap:5px; }
+  .nav-toggle span{ width:22px; height:1.5px; background:var(--cream); }
+  nav.is-scrolled .nav-toggle span{ background:var(--cream); }
+
+  /* HERO */
+  .hero{ position:relative; min-height:92vh; display:flex; align-items:center; background:linear-gradient(160deg, var(--night), var(--espresso)); color:var(--cream); overflow:hidden; margin-top:-76px; padding-top:76px; }
+  .hero::before{ content:""; position:absolute; inset:0; background:radial-gradient(ellipse at 70% 40%, rgba(201,162,74,.14), transparent 60%); pointer-events:none; }
+  .hero::after{ content:""; position:absolute; inset:0; background-image:radial-gradient(rgba(201,162,74,.25) 1px, transparent 1px); background-size:26px 26px; opacity:.15; pointer-events:none; }
+  .hero-inner{ position:relative; z-index:1; max-width:820px; margin:0 auto; padding:clamp(50px,8vw,90px) var(--pad); text-align:center; }
+  .hero .stars{ color:var(--gold); letter-spacing:.3em; font-size:1rem; margin-bottom:1.4em; }
+  .hero h1{ color:var(--cream); font-size:clamp(2.8rem,6.5vw,5.4rem); line-height:1.02; margin-bottom:.35em; letter-spacing:-.01em; }
+  .hero h1 em{ font-style:italic; color:var(--gold-light); }
+  .hero p{ font-size:clamp(1.05rem,1.7vw,1.25rem); color:rgba(247,241,230,.8); max-width:52ch; margin:0 auto 2.2em; }
+  .hero-ctas{ display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+
+  /* INFO BAR */
+  .infobar{ background:var(--night-2); border-top:1px solid var(--line-dark); border-bottom:1px solid var(--line-dark); }
+  .infobar-inner{ max-width:var(--container); margin:0 auto; padding:22px var(--pad); display:flex; flex-wrap:wrap; justify-content:center; gap:14px 44px; color:rgba(247,241,230,.85); font-size:.92rem; }
+  .infobar span{ display:inline-flex; align-items:center; gap:.6em; }
+  .infobar svg{ width:17px; height:17px; color:var(--gold); }
+
+  /* SECTIONS */
+  .section{ padding:var(--section-py) 0; }
+  .section-head{ max-width:600px; margin:0 auto clamp(40px,5vw,60px); text-align:center; }
+  .section-head .divider{ width:44px; height:2px; background:var(--gold); margin:0 auto 1.4em; }
+  .section-head h2{ font-size:clamp(2.2rem,4vw,3.2rem); margin-bottom:.3em; }
+  .section-head p{ font-size:1.05rem; color:var(--ink-soft); }
+
+  /* ABOUT */
+  .about-grid{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(32px,5vw,64px); align-items:center; }
+  .about-visual{ aspect-ratio:4/5; border-radius:var(--radius-lg); background:linear-gradient(155deg, var(--espresso), var(--night)); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; color:rgba(247,241,230,.55); position:relative; }
+  .about-visual svg{ width:56px; height:56px; }
+  .about-visual .ph-note{ position:absolute; bottom:16px; left:0; right:0; text-align:center; font-size:.72rem; color:rgba(247,241,230,.4); }
+  .about-text .eyebrow{ margin-bottom:1em; }
+  .about-text h2{ font-size:clamp(2rem,3.6vw,2.8rem); margin-bottom:.5em; }
+  .about-text p{ margin-bottom:1em; color:var(--ink-soft); }
+  .about-sign{ font-family:var(--ff-display); font-style:italic; font-size:1.4rem; color:var(--terra); margin-top:.6em; }
+
+  /* MENU / SPEISEKARTE */
+  .menu-sec{ background:linear-gradient(160deg, var(--night), var(--espresso)); color:var(--cream); }
+  .menu-sec .section-head h2{ color:var(--cream); }
+  .menu-sec .section-head p{ color:rgba(247,241,230,.7); }
+  .menu-grid{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(34px,5vw,68px); max-width:900px; margin:0 auto; }
+  .menu-col h3{ color:var(--gold); font-size:1.5rem; margin-bottom:.9em; text-align:center; letter-spacing:.02em; }
+  .menu-item{ display:flex; justify-content:space-between; align-items:baseline; gap:12px; padding:.85em 0; border-bottom:1px solid rgba(247,241,230,.1); }
+  .menu-item:last-child{ border-bottom:none; }
+  .menu-item .mi-name{ color:var(--cream); font-weight:500; }
+  .menu-item .mi-desc{ display:block; font-size:.82rem; color:rgba(247,241,230,.55); font-weight:300; margin-top:.15em; }
+  .menu-item .mi-price{ font-family:var(--ff-display); color:var(--gold-light); font-size:1.15rem; white-space:nowrap; }
+  .menu-note{ text-align:center; margin-top:2.6em; font-size:.85rem; color:rgba(247,241,230,.5); }
+  .menu-cta{ text-align:center; margin-top:2.4em; }
+
+  /* GALERIE */
+  .gallery{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+  .gitem{ aspect-ratio:1; border-radius:var(--radius); background:linear-gradient(150deg, var(--cream-2), var(--gold-light)); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; color:var(--olive); text-align:center; padding:14px; transition:.25s; }
+  .gitem:nth-child(3n){ background:linear-gradient(150deg, var(--gold-light), var(--terra)); color:#fff; }
+  .gitem:nth-child(3n+2){ background:linear-gradient(150deg, var(--cream-2), var(--olive)); color:#fff; }
+  .gitem:hover{ transform:scale(1.02); }
+  .gitem svg{ width:32px; height:32px; opacity:.85; }
+  .gitem span{ font-size:.76rem; }
+  .gallery-note{ text-align:center; margin-top:24px; font-size:.88rem; color:var(--ink-mute); }
+
+  /* RESERVIERUNG / KONTAKT */
+  .reserve-sec{ background:var(--cream); border-top:1px solid var(--line); }
+  .reserve-grid{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(32px,5vw,64px); }
+  .reserve-info .info-row{ display:flex; gap:16px; align-items:flex-start; padding:17px 0; border-bottom:1px solid var(--line); }
+  .reserve-info .info-row:last-child{ border-bottom:none; }
+  .reserve-info .ic{ width:42px; height:42px; border-radius:50%; background:var(--paper); color:var(--terra); display:flex; align-items:center; justify-content:center; flex-shrink:0; border:1px solid var(--line); }
+  .reserve-info .ic svg{ width:19px; height:19px; }
+  .reserve-info .lbl{ font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-mute); margin-bottom:.2em; }
+  .reserve-info .val{ color:var(--ink); font-size:1.02rem; }
+  .reserve-card{ background:var(--night); color:var(--cream); border-radius:var(--radius-lg); padding:clamp(28px,3vw,40px); }
+  .reserve-card h3{ color:var(--cream); font-size:1.6rem; margin-bottom:1em; }
+  .field{ margin-bottom:14px; }
+  .field label{ display:block; font-size:.78rem; letter-spacing:.06em; text-transform:uppercase; color:rgba(247,241,230,.6); margin-bottom:.4em; }
+  .field input{ width:100%; padding:.8em 1em; border:1px solid var(--line-dark); border-radius:6px; font-family:inherit; font-size:.95rem; background:var(--night-2); color:var(--cream); }
+  .field input::placeholder{ color:rgba(247,241,230,.35); }
+  .field input:focus{ outline:none; border-color:var(--gold); }
+  .field-row{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .reserve-card .btn-gold{ width:100%; margin-top:.5em; }
+  .reserve-note{ font-size:.76rem; color:rgba(247,241,230,.5); margin-top:12px; text-align:center; }
+
+  /* FOOTER */
+  footer{ background:var(--night); color:rgba(247,241,230,.5); border-top:1px solid var(--line-dark); }
+  .footer-inner{ max-width:var(--container); margin:0 auto; padding:36px var(--pad); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; }
+  .footer-inner b{ font-family:var(--ff-display); font-size:1.3rem; color:var(--cream); }
+  .footer-inner .fnote{ font-size:.82rem; }
+
+  @media (max-width:900px){
+    .about-grid{ grid-template-columns:1fr; }
+    .about-visual{ max-width:360px; order:-1; aspect-ratio:16/12; }
+    .menu-grid{ grid-template-columns:1fr; }
+    .gallery{ grid-template-columns:repeat(2,1fr); }
+    .reserve-grid{ grid-template-columns:1fr; }
+  }
+  @media (max-width:780px){
+    .nav-links{ display:none; position:absolute; top:100%; left:0; right:0; background:rgba(26,21,18,.98); backdrop-filter:blur(10px); flex-direction:column; align-items:flex-start; border-bottom:1px solid var(--line-dark); padding:8px var(--pad) 18px; }
+    .nav-links a{ margin-left:0; padding:.9em 0; width:100%; border-bottom:1px solid var(--line-dark); }
+    .nav-links a:last-child{ border-bottom:none; }
+    nav.is-open .nav-links{ display:flex; }
+    nav.is-open{ background:rgba(26,21,18,.98); }
+    .nav-toggle{ display:flex; }
+    .nav-cta{ display:none; }
+  }
+  @media (max-width:600px){
+    .gallery{ grid-template-columns:repeat(2,1fr); }
+    .field-row{ grid-template-columns:1fr; }
+    .hero-ctas .btn{ width:100%; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="site-nav">
+  <div class="nav-inner">
+    <a href="#" class="brand"><b>Da Vinci</b><span>Ristorante · Trattoria</span></a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menü"><span></span><span></span><span></span></button>
+    <div class="nav-links" id="nav-links">
+      <a href="#ueber-uns">Über uns</a>
+      <a href="#speisekarte">Speisekarte</a>
+      <a href="#galerie">Galerie</a>
+      <a href="#reservieren">Reservieren</a>
+    </div>
+    <a href="#reservieren" class="btn btn-gold nav-cta">Tisch reservieren</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="stars">★ ★ ★ ★ ★</div>
+    <h1>Italienische Küche<br>mit <em>Herz</em>.</h1>
+    <p>Hausgemachte Pasta, knusprige Pizza aus dem Steinofen und ausgewählte Weine – willkommen im Ristorante Da Vinci, mitten in Rosenheim.</p>
+    <div class="hero-ctas">
+      <a href="#reservieren" class="btn btn-gold">Tisch reservieren</a>
+      <a href="#speisekarte" class="btn btn-outline-gold">Zur Speisekarte</a>
+    </div>
+  </div>
+</header>
+
+<div class="infobar">
+  <div class="infobar-inner">
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Di–So 17:00–23:00 Uhr</span>
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Innstraße 12 · Rosenheim</span>
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.4 2.1L8.1 9.7a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.4c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.9 2.2z"/></svg> 08031 000000</span>
+  </div>
+</div>
+
+<!-- ÜBER UNS -->
+<section class="section" id="ueber-uns">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2v7a3 3 0 0 0 6 0V2"/><path d="M9 2v20"/><path d="M17 2c-1.5 1.5-2.5 3.5-2.5 6V13H17"/><path d="M17 13v9"/></svg>
+        <span>Ambiente / Küche</span>
+        <div class="ph-note">Platzhalter – hier kommt ein Foto Ihres Restaurants hin</div>
+      </div>
+      <div class="about-text">
+        <span class="eyebrow">Benvenuti</span>
+        <h2>Seit 1995 ein Stück Italien.</h2>
+        <p>Was als kleine Familientrattoria begann, ist heute ein fester Teil von Rosenheim. Unsere Rezepte stammen noch von Nonna Maria – und werden bis heute mit Liebe von Hand zubereitet.</p>
+        <p>Wir kochen mit frischen Zutaten, importieren unsere Spezialitäten direkt aus Italien und legen Wert auf echte Gastfreundschaft. Bei uns sollen Sie sich wie zu Hause fühlen.</p>
+        <div class="about-sign">— Familie Rossi</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPEISEKARTE -->
+<section class="section menu-sec" id="speisekarte">
+  <div class="container">
+    <div class="section-head">
+      <div class="divider"></div>
+      <span class="eyebrow">Unsere Speisekarte</span>
+      <h2>Buon Appetito</h2>
+      <p>Eine Auswahl unserer beliebtesten Gerichte – frisch zubereitet, jeden Tag.</p>
+    </div>
+    <div class="menu-grid">
+      <div class="menu-col">
+        <h3>Antipasti &amp; Pasta</h3>
+        <div class="menu-item"><div><span class="mi-name">Bruschetta Classica</span><span class="mi-desc">Geröstetes Brot, Tomaten, Basilikum</span></div><span class="mi-price">7,50</span></div>
+        <div class="menu-item"><div><span class="mi-name">Vitello Tonnato</span><span class="mi-desc">Kalbfleisch, Thunfischcreme, Kapern</span></div><span class="mi-price">12,90</span></div>
+        <div class="menu-item"><div><span class="mi-name">Spaghetti Carbonara</span><span class="mi-desc">Guanciale, Ei, Pecorino</span></div><span class="mi-price">13,50</span></div>
+        <div class="menu-item"><div><span class="mi-name">Tagliatelle al Tartufo</span><span class="mi-desc">Hausgemacht, Trüffel, Parmesan</span></div><span class="mi-price">17,90</span></div>
+        <div class="menu-item"><div><span class="mi-name">Lasagne della Nonna</span><span class="mi-desc">Nach Familienrezept</span></div><span class="mi-price">14,50</span></div>
+      </div>
+      <div class="menu-col">
+        <h3>Pizza &amp; Dolci</h3>
+        <div class="menu-item"><div><span class="mi-name">Pizza Margherita</span><span class="mi-desc">Tomaten, Mozzarella, Basilikum</span></div><span class="mi-price">9,90</span></div>
+        <div class="menu-item"><div><span class="mi-name">Pizza Diavola</span><span class="mi-desc">Scharfe Salami, Peperoni</span></div><span class="mi-price">12,50</span></div>
+        <div class="menu-item"><div><span class="mi-name">Pizza Tartufo</span><span class="mi-desc">Trüffelcreme, Rucola, Parmesan</span></div><span class="mi-price">15,90</span></div>
+        <div class="menu-item"><div><span class="mi-name">Tiramisù</span><span class="mi-desc">Hausgemacht, klassisch</span></div><span class="mi-price">6,90</span></div>
+        <div class="menu-item"><div><span class="mi-name">Panna Cotta</span><span class="mi-desc">Mit Fruchtspiegel</span></div><span class="mi-price">6,50</span></div>
+      </div>
+    </div>
+    <p class="menu-note">Platzhalter-Speisekarte – hier stehen später Ihre echten Gerichte und Preise.</p>
+    <div class="menu-cta"><a href="#reservieren" class="btn btn-gold">Jetzt Tisch reservieren</a></div>
+  </div>
+</section>
+
+<!-- GALERIE -->
+<section class="section" id="galerie">
+  <div class="container">
+    <div class="section-head">
+      <div class="divider"></div>
+      <span class="eyebrow">Galerie</span>
+      <h2>Ein Blick zu uns</h2>
+      <p>Impressionen aus Küche, Ambiente und von unseren Tellern.</p>
+    </div>
+    <div class="gallery">
+      <div class="gitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg><span>Pizza</span></div>
+      <div class="gitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h18M5 11a7 7 0 0 1 14 0M9 7V5M13 6V4"/></svg><span>Pasta</span></div>
+      <div class="gitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v7a4 4 0 0 0 8 0V2M12 13v9"/></svg><span>Weine</span></div>
+      <div class="gitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><circle cx="12" cy="11" r="3"/></svg><span>Ambiente</span></div>
+      <div class="gitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l4-9 4 5 3-7 5 11z"/></svg><span>Dolci</span></div>
+      <div class="gitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2v7a3 3 0 0 0 6 0V2M9 2v20"/></svg><span>Antipasti</span></div>
+      <div class="gitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/></svg><span>Terrasse</span></div>
+      <div class="gitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 5 5.6.8-4 4 .9 5.5L12 20l-5 2.3.9-5.5-4-4 5.6-.8z"/></svg><span>Highlights</span></div>
+    </div>
+    <p class="gallery-note">Platzhalter-Kacheln – hier werden später echte Fotos eingesetzt.</p>
+  </div>
+</section>
+
+<!-- RESERVIEREN -->
+<section class="section reserve-sec" id="reservieren">
+  <div class="container">
+    <div class="section-head">
+      <div class="divider"></div>
+      <span class="eyebrow">Reservierung</span>
+      <h2>Ihr Tisch wartet</h2>
+      <p>Reservieren Sie bequem – wir bestätigen Ihnen den Termin telefonisch oder per E-Mail.</p>
+    </div>
+    <div class="reserve-grid">
+      <div class="reserve-info">
+        <div class="info-row">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.4 2.1L8.1 9.7a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.4c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.9 2.2z"/></svg></span>
+          <div><div class="lbl">Telefon</div><div class="val">08031 000000</div></div>
+        </div>
+        <div class="info-row">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l9 7 9-7"/><rect x="3" y="5" width="18" height="14" rx="2"/></svg></span>
+          <div><div class="lbl">E-Mail</div><div class="val">tisch@davinci-rosenheim.de</div></div>
+        </div>
+        <div class="info-row">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <div><div class="lbl">Adresse</div><div class="val">Innstraße 12 · 83022 Rosenheim</div></div>
+        </div>
+        <div class="info-row">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+          <div><div class="lbl">Öffnungszeiten</div><div class="val">Di–So 17:00–23:00 · Mo Ruhetag</div></div>
+        </div>
+      </div>
+      <div class="reserve-card">
+        <h3>Tisch reservieren</h3>
+        <div class="field"><label>Name</label><input type="text" placeholder="Ihr Name"></div>
+        <div class="field-row">
+          <div class="field"><label>Datum</label><input type="text" placeholder="TT.MM.JJJJ"></div>
+          <div class="field"><label>Personen</label><input type="text" placeholder="z. B. 4"></div>
+        </div>
+        <div class="field"><label>Telefon</label><input type="text" placeholder="Für die Bestätigung"></div>
+        <button class="btn btn-gold">Reservierung anfragen</button>
+        <p class="reserve-note">Wir bestätigen Ihre Reservierung schnellstmöglich.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <b>Ristorante Da Vinci</b>
+    <div class="fnote">© 2026 Ristorante Da Vinci · Beispielseite von Arntz Digital</div>
+  </div>
+</footer>
+
+<script>
+  const nav=document.getElementById('site-nav');
+  window.addEventListener('scroll',()=>{nav.classList.toggle('is-scrolled',window.scrollY>8);},{passive:true});
+  const t=document.getElementById('nav-toggle');
+  t.addEventListener('click',()=>nav.classList.toggle('is-open'));
+  document.querySelectorAll('#nav-links a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('is-open')));
+</script>
+</body>
+</html>

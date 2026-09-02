@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Salon Lumière — Ihr Friseur für Schnitt, Farbe &amp; Styling</title>
+<meta name="description" content="Salon Lumière – moderner Friseursalon für Damen und Herren. Schnitt, Farbe, Styling und Pflege in entspannter Atmosphäre." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#faf7f5;
+    --bg-2:#f2ebe7;
+    --blush:#e9d5cf;
+    --rose:#c98a7d;
+    --rose-deep:#a8685b;
+    --plum:#3a2c2f;
+    --ink:#2b2124;
+    --ink-soft:#6a5b5d;
+    --ink-mute:#9a8a8c;
+    --line:#ebe0da;
+    --gold:#b89b6a;
+    --radius:16px;
+    --radius-lg:26px;
+    --pad:clamp(22px,5vw,56px);
+    --section-py:clamp(66px,9vw,124px);
+    --container:1160px;
+    --ff-display:'Cormorant Garamond',Georgia,serif;
+    --ff-body:'Jost',sans-serif;
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; overflow-x:hidden; width:100%; }
+  body{ margin:0; background:var(--bg); color:var(--ink-soft); font-family:var(--ff-body); font-size:16.5px; line-height:1.7; font-weight:300; -webkit-font-smoothing:antialiased; overflow-x:hidden; width:100%; max-width:100%; }
+  h1,h2,h3{ font-family:var(--ff-display); color:var(--ink); margin:0; font-weight:600; line-height:1.1; }
+  p{ margin:0; }
+  a{ color:inherit; text-decoration:none; }
+  ul{ margin:0; padding:0; list-style:none; }
+  img,svg{ display:block; max-width:100%; }
+  button{ font-family:inherit; cursor:pointer; }
+  .container{ max-width:var(--container); margin:0 auto; padding-left:var(--pad); padding-right:var(--pad); }
+  :focus-visible{ outline:2px solid var(--rose); outline-offset:3px; }
+
+  .eyebrow{ font-family:var(--ff-body); font-size:.76rem; letter-spacing:.32em; text-transform:uppercase; color:var(--rose-deep); font-weight:500; margin-bottom:1.3em; display:inline-block; }
+
+  .btn{ display:inline-flex; align-items:center; justify-content:center; gap:.5em; padding:1em 2em; border-radius:999px; font-family:var(--ff-body); font-weight:500; font-size:.9rem; letter-spacing:.05em; text-transform:uppercase; border:1px solid transparent; transition:.25s; white-space:nowrap; }
+  .btn-primary{ background:var(--rose-deep); color:#fff; }
+  .btn-primary:hover{ background:var(--plum); transform:translateY(-2px); }
+  .btn-outline{ border-color:var(--rose-deep); color:var(--rose-deep); }
+  .btn-outline:hover{ background:var(--rose-deep); color:#fff; }
+  .btn-light{ border-color:rgba(255,255,255,.6); color:#fff; }
+  .btn-light:hover{ background:#fff; color:var(--plum); }
+
+  /* NAV */
+  nav{ position:sticky; top:0; z-index:50; background:rgba(250,247,245,0); transition:.3s; border-bottom:1px solid transparent; }
+  nav.is-scrolled{ background:rgba(250,247,245,.9); backdrop-filter:blur(12px); border-color:var(--line); }
+  .nav-inner{ display:flex; align-items:center; gap:1.5rem; padding:1.2rem var(--pad); max-width:var(--container); margin:0 auto; }
+  .brand{ margin-right:auto; line-height:1; }
+  .brand b{ font-family:var(--ff-display); font-weight:700; font-size:1.6rem; color:var(--ink); letter-spacing:.02em; display:block; }
+  .brand span{ font-family:var(--ff-body); font-size:.64rem; letter-spacing:.32em; text-transform:uppercase; color:var(--ink-mute); }
+  .nav-links{ display:flex; align-items:center; font-size:.82rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); font-weight:400; }
+  .nav-links a{ margin-left:2.1rem; transition:color .2s; }
+  .nav-links a:first-child{ margin-left:0; }
+  .nav-links a:hover{ color:var(--rose-deep); }
+  .nav-cta{ padding:.7em 1.4em; font-size:.72rem; flex-shrink:0; }
+  .nav-toggle{ display:none; background:none; border:none; width:42px; height:42px; flex-direction:column; align-items:center; justify-content:center; gap:5px; }
+  .nav-toggle span{ width:22px; height:1.5px; background:var(--ink); }
+
+  /* HERO */
+  .hero{ position:relative; overflow:hidden; }
+  .hero-inner{ max-width:var(--container); margin:0 auto; padding:clamp(60px,9vw,110px) var(--pad) clamp(50px,7vw,90px); }
+  .hero-grid{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(30px,5vw,70px); align-items:center; }
+  .hero h1{ font-size:clamp(2.8rem,6vw,5rem); line-height:1; margin-bottom:.35em; letter-spacing:-.01em; }
+  .hero h1 em{ font-style:italic; color:var(--rose-deep); }
+  .hero p{ font-size:clamp(1.05rem,1.6vw,1.2rem); color:var(--ink-soft); max-width:44ch; margin-bottom:2em; }
+  .hero-ctas{ display:flex; gap:1rem; flex-wrap:wrap; }
+  .hero-visual{ aspect-ratio:4/5; border-radius:var(--radius-lg); background:linear-gradient(155deg, var(--blush), var(--rose)); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; color:rgba(255,255,255,.85); position:relative; overflow:hidden; }
+  .hero-visual svg{ width:56px; height:56px; }
+  .hero-visual .ph-note{ position:absolute; bottom:16px; left:0; right:0; text-align:center; font-size:.72rem; color:rgba(255,255,255,.6); }
+
+  /* STATS STRIP */
+  .strip{ background:var(--plum); color:rgba(255,255,255,.85); }
+  .strip-inner{ max-width:var(--container); margin:0 auto; padding:26px var(--pad); display:flex; flex-wrap:wrap; justify-content:space-around; gap:20px; text-align:center; }
+  .strip .item b{ font-family:var(--ff-display); font-size:1.9rem; color:#fff; display:block; line-height:1; }
+  .strip .item span{ font-size:.78rem; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.6); }
+
+  /* SECTIONS */
+  .section{ padding:var(--section-py) 0; }
+  .section-head{ max-width:600px; margin:0 auto clamp(40px,5vw,60px); text-align:center; }
+  .section-head h2{ font-size:clamp(2.2rem,4vw,3.2rem); margin-bottom:.3em; }
+  .section-head p{ font-size:1.05rem; color:var(--ink-soft); }
+
+  /* LEISTUNGEN / PREISE */
+  .services{ display:grid; grid-template-columns:repeat(2,1fr); gap:clamp(30px,4vw,50px); max-width:860px; margin:0 auto; }
+  .service-col h3{ font-size:1.7rem; margin-bottom:.7em; padding-bottom:.4em; border-bottom:1px solid var(--line); display:flex; align-items:center; gap:.5em; }
+  .service-col h3 svg{ width:22px; height:22px; color:var(--rose-deep); }
+  .price-row{ display:flex; justify-content:space-between; align-items:baseline; padding:.7em 0; gap:12px; }
+  .price-row .name{ color:var(--ink); font-weight:400; }
+  .price-row .dots{ flex:1; border-bottom:1px dotted var(--line); transform:translateY(-4px); }
+  .price-row .price{ font-family:var(--ff-display); font-size:1.2rem; color:var(--rose-deep); font-weight:600; white-space:nowrap; }
+  .price-note{ text-align:center; margin-top:2.4em; font-size:.86rem; color:var(--ink-mute); }
+
+  /* GALERIE */
+  .gallery-sec{ background:var(--bg-2); }
+  .gallery{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+  .gitem{ aspect-ratio:3/4; border-radius:var(--radius); background:linear-gradient(150deg, var(--blush), var(--rose)); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; color:rgba(255,255,255,.85); text-align:center; padding:14px; transition:.25s; }
+  .gitem:nth-child(even){ background:linear-gradient(150deg, var(--rose), var(--rose-deep)); }
+  .gitem:hover{ transform:translateY(-4px); }
+  .gitem svg{ width:30px; height:30px; opacity:.85; }
+  .gitem span{ font-size:.76rem; }
+  .gallery-note{ text-align:center; margin-top:24px; font-size:.88rem; color:var(--ink-mute); }
+
+  /* TEAM */
+  .team{ display:grid; grid-template-columns:repeat(3,1fr); gap:30px; max-width:900px; margin:0 auto; }
+  .member{ text-align:center; }
+  .member-photo{ aspect-ratio:1; border-radius:50%; background:linear-gradient(150deg, var(--blush), var(--rose)); display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,.8); margin-bottom:18px; }
+  .member-photo svg{ width:44px; height:44px; }
+  .member h3{ font-size:1.5rem; margin-bottom:.1em; }
+  .member span{ font-size:.8rem; letter-spacing:.12em; text-transform:uppercase; color:var(--rose-deep); }
+
+  /* CTA */
+  .cta{ background:linear-gradient(160deg, var(--rose), var(--rose-deep)); color:#fff; text-align:center; }
+  .cta-inner{ max-width:640px; margin:0 auto; padding:var(--section-py) var(--pad); }
+  .cta h2{ color:#fff; font-size:clamp(2.2rem,4vw,3.2rem); margin-bottom:.3em; }
+  .cta p{ color:rgba(255,255,255,.85); margin-bottom:1.8em; font-size:1.1rem; }
+
+  /* KONTAKT */
+  .contact{ }
+  .contact-grid{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(30px,5vw,60px); }
+  .contact-info .info-row{ display:flex; gap:16px; align-items:flex-start; padding:18px 0; border-bottom:1px solid var(--line); }
+  .contact-info .info-row:last-child{ border-bottom:none; }
+  .contact-info .ic{ width:42px; height:42px; border-radius:50%; background:var(--bg-2); color:var(--rose-deep); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .contact-info .ic svg{ width:19px; height:19px; }
+  .contact-info .lbl{ font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-mute); margin-bottom:.2em; }
+  .contact-info .val{ color:var(--ink); font-size:1.02rem; }
+  .hours-card{ background:var(--plum); color:#fff; border-radius:var(--radius-lg); padding:clamp(28px,3vw,42px); }
+  .hours-card h3{ color:#fff; font-size:1.7rem; margin-bottom:1em; }
+  .hours-row{ display:flex; justify-content:space-between; padding:.6em 0; border-bottom:1px solid rgba(255,255,255,.12); font-size:.95rem; }
+  .hours-row:last-child{ border-bottom:none; }
+  .hours-row span:first-child{ color:rgba(255,255,255,.7); }
+  .hours-card .btn{ width:100%; margin-top:1.6em; }
+
+  /* FOOTER */
+  footer{ background:var(--plum); color:rgba(255,255,255,.5); border-top:1px solid rgba(255,255,255,.08); }
+  .footer-inner{ max-width:var(--container); margin:0 auto; padding:34px var(--pad); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; }
+  .footer-inner b{ font-family:var(--ff-display); font-size:1.3rem; color:#fff; font-weight:600; }
+  .footer-inner .fnote{ font-size:.82rem; }
+
+  /* INSTAGRAM */
+  .insta-sec{ text-align:center; }
+  .insta-handle{ display:inline-flex; align-items:center; gap:.5em; font-size:1.1rem; color:var(--ink); margin-bottom:1.6em; font-weight:400; }
+  .insta-handle svg{ width:24px; height:24px; color:var(--rose-deep); }
+  .insta-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; max-width:760px; margin:0 auto 2.2em; }
+  .insta-item{ aspect-ratio:1; border-radius:var(--radius); background:linear-gradient(150deg, var(--blush), var(--rose)); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; color:rgba(255,255,255,.9); position:relative; overflow:hidden; transition:.25s; }
+  .insta-item:nth-child(2){ background:linear-gradient(150deg, var(--rose), var(--rose-deep)); }
+  .insta-item:nth-child(3){ background:linear-gradient(150deg, var(--blush), var(--gold)); }
+  .insta-item:hover{ transform:translateY(-4px); box-shadow:0 18px 38px -24px rgba(58,44,47,.5); }
+  .insta-item svg{ width:34px; height:34px; opacity:.9; }
+  .insta-item span{ font-size:.78rem; letter-spacing:.04em; }
+  .insta-overlay{ position:absolute; inset:0; background:rgba(58,44,47,.28); opacity:0; display:flex; align-items:center; justify-content:center; transition:.25s; }
+  .insta-item:hover .insta-overlay{ opacity:1; }
+  .insta-overlay svg{ width:30px; height:30px; color:#fff; opacity:1; }
+  .insta-note{ font-size:.86rem; color:var(--ink-mute); margin-top:1.6em; }
+
+  @media (max-width:900px){
+    .hero-grid{ grid-template-columns:1fr; }
+    .hero-visual{ max-width:360px; aspect-ratio:16/12; order:-1; }
+    .gallery{ grid-template-columns:repeat(2,1fr); }
+    .team{ grid-template-columns:1fr; max-width:320px; }
+    .contact-grid{ grid-template-columns:1fr; }
+  }
+  @media (max-width:780px){
+    .nav-links{ display:none; position:absolute; top:100%; left:0; right:0; background:rgba(250,247,245,.98); backdrop-filter:blur(12px); flex-direction:column; align-items:flex-start; border-bottom:1px solid var(--line); padding:8px var(--pad) 18px; }
+    .nav-links a{ margin-left:0; padding:.9em 0; width:100%; border-bottom:1px solid var(--line); }
+    .nav-links a:last-child{ border-bottom:none; }
+    nav.is-open .nav-links{ display:flex; }
+    .nav-toggle{ display:flex; }
+    .nav-cta{ display:none; }
+  }
+  @media (max-width:600px){
+    .services{ grid-template-columns:1fr; }
+    .hero-ctas .btn{ width:100%; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="site-nav">
+  <div class="nav-inner">
+    <a href="#" class="brand"><b>Salon Lumière</b><span>Friseur &amp; Styling</span></a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menü"><span></span><span></span><span></span></button>
+    <div class="nav-links" id="nav-links">
+      <a href="#leistungen">Leistungen</a>
+      <a href="#galerie">Galerie</a>
+      <a href="#instagram">Instagram</a>
+      <a href="#team">Team</a>
+      <a href="#kontakt">Kontakt</a>
+    </div>
+    <a href="#kontakt" class="btn btn-primary nav-cta">Termin anfragen</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow">Friseur · Damen &amp; Herren</span>
+        <h1>Ihr Look. <em>Perfekt</em> in Szene gesetzt.</h1>
+        <p>Willkommen im Salon Lumière. Wir nehmen uns Zeit für Sie – von der Beratung über den Schnitt bis zum Styling, das wirklich zu Ihnen passt.</p>
+        <div class="hero-ctas">
+          <a href="#kontakt" class="btn btn-primary">Termin anfragen</a>
+          <a href="#leistungen" class="btn btn-outline">Leistungen &amp; Preise</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="8.1" y1="7.9" x2="20" y2="18"/><line x1="8.1" y1="16.1" x2="20" y2="6"/></svg>
+        <span>Salon-Impression</span>
+        <div class="ph-note">Platzhalter – hier kommt ein Foto Ihres Salons hin</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="strip">
+  <div class="strip-inner">
+    <div class="item"><b>15+</b><span>Jahre Erfahrung</span></div>
+    <div class="item"><b>4.9★</b><span>Google-Bewertung</span></div>
+    <div class="item"><b>2.500+</b><span>zufriedene Kunden</span></div>
+    <div class="item"><b>100%</b><span>Leidenschaft</span></div>
+  </div>
+</div>
+
+<!-- LEISTUNGEN & PREISE -->
+<section class="section" id="leistungen">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Leistungen &amp; Preise</span>
+      <h2>Was wir für Sie tun</h2>
+      <p>Transparente Preise, ehrliche Beratung. Alle Preise ab-Angaben, das genaue Ergebnis besprechen wir vor Ort.</p>
+    </div>
+    <div class="services">
+      <div class="service-col">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="8.1" y1="7.9" x2="20" y2="18"/><line x1="8.1" y1="16.1" x2="20" y2="6"/></svg> Damen</h3>
+        <div class="price-row"><span class="name">Waschen, Schneiden, Föhnen</span><span class="dots"></span><span class="price">ab 49 €</span></div>
+        <div class="price-row"><span class="name">Coloration</span><span class="dots"></span><span class="price">ab 65 €</span></div>
+        <div class="price-row"><span class="name">Strähnen / Balayage</span><span class="dots"></span><span class="price">ab 95 €</span></div>
+        <div class="price-row"><span class="name">Hochsteckfrisur</span><span class="dots"></span><span class="price">ab 55 €</span></div>
+      </div>
+      <div class="service-col">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l16 16M4 20L20 4"/></svg> Herren</h3>
+        <div class="price-row"><span class="name">Waschen, Schneiden, Styling</span><span class="dots"></span><span class="price">ab 32 €</span></div>
+        <div class="price-row"><span class="name">Maschinenschnitt</span><span class="dots"></span><span class="price">ab 22 €</span></div>
+        <div class="price-row"><span class="name">Bartpflege &amp; Rasur</span><span class="dots"></span><span class="price">ab 18 €</span></div>
+        <div class="price-row"><span class="name">Kinderschnitt</span><span class="dots"></span><span class="price">ab 16 €</span></div>
+      </div>
+    </div>
+    <p class="price-note">Platzhalter-Preise – hier stehen später Ihre tatsächlichen Leistungen und Preise.</p>
+  </div>
+</section>
+
+<!-- GALERIE -->
+<section class="section gallery-sec" id="galerie">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Galerie</span>
+      <h2>Einblicke &amp; Looks</h2>
+      <p>Ein Eindruck von unserer Arbeit und der Atmosphäre im Salon.</p>
+    </div>
+    <div class="gallery">
+      <div class="gitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M5 21c0-4 3-6 7-6s7 2 7 6"/></svg><span>Damenschnitt</span></div>
+      <div class="gitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c3 4 5 7 5 10a5 5 0 0 1-10 0c0-3 2-6 5-10z"/></svg><span>Coloration</span></div>
+      <div class="gitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M5 21c0-4 3-6 7-6s7 2 7 6"/></svg><span>Styling</span></div>
+      <div class="gitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><circle cx="12" cy="12" r="3"/></svg><span>Salon-Ambiente</span></div>
+      <div class="gitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l16 16M4 20L20 4"/></svg><span>Herrenschnitt</span></div>
+      <div class="gitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Hochsteckfrisur</span></div>
+      <div class="gitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 5 5.6.8-4 4 .9 5.5L12 20l-5 2.3.9-5.5-4-4 5.6-.8z"/></svg><span>Vorher / Nachher</span></div>
+      <div class="gitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M5 21c0-4 3-6 7-6s7 2 7 6"/></svg><span>Brautstyling</span></div>
+      <div class="gitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-8-8"/><path d="M12 8v4l3 2"/></svg><span>Pflege</span></div>
+    </div>
+    <p class="gallery-note">Platzhalter-Kacheln – hier werden später echte Fotos aus dem Salon eingesetzt.</p>
+  </div>
+</section>
+
+<!-- INSTAGRAM -->
+<section class="section insta-sec" id="instagram">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Instagram</span>
+      <h2>Folgen Sie uns</h2>
+      <p>Aktuelle Looks, Inspiration und Einblicke in den Salon-Alltag.</p>
+    </div>
+    <a href="https://www.instagram.com" target="_blank" rel="noopener" class="insta-handle">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
+      @salon.lumiere
+    </a>
+    <div class="insta-grid">
+      <a href="https://www.instagram.com" target="_blank" rel="noopener" class="insta-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M5 21c0-4 3-6 7-6s7 2 7 6"/></svg>
+        <span>Neuer Look</span>
+        <div class="insta-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></div>
+      </a>
+      <a href="https://www.instagram.com" target="_blank" rel="noopener" class="insta-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c3 4 5 7 5 10a5 5 0 0 1-10 0c0-3 2-6 5-10z"/></svg>
+        <span>Farbe des Monats</span>
+        <div class="insta-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></div>
+      </a>
+      <a href="https://www.instagram.com" target="_blank" rel="noopener" class="insta-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 5 5.6.8-4 4 .9 5.5L12 20l-5 2.3.9-5.5-4-4 5.6-.8z"/></svg>
+        <span>Brautstyling</span>
+        <div class="insta-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></div>
+      </a>
+    </div>
+    <a href="https://www.instagram.com" target="_blank" rel="noopener" class="btn btn-outline">Auf Instagram folgen</a>
+    <p class="insta-note">Platzhalter-Beiträge – hier werden später echte Instagram-Bilder verlinkt.</p>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="section" id="team">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Unser Team</span>
+      <h2>Die Menschen hinter Lumière</h2>
+      <p>Ein eingespieltes Team, das mit Leidenschaft und Fingerspitzengefühl arbeitet.</p>
+    </div>
+    <div class="team">
+      <div class="member">
+        <div class="member-photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/></svg></div>
+        <h3>Marie</h3>
+        <span>Inhaberin &amp; Meisterin</span>
+      </div>
+      <div class="member">
+        <div class="member-photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/></svg></div>
+        <h3>Jonas</h3>
+        <span>Stylist &amp; Colorist</span>
+      </div>
+      <div class="member">
+        <div class="member-photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/></svg></div>
+        <h3>Lena</h3>
+        <span>Friseurin</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="cta-inner">
+    <span class="eyebrow" style="color:rgba(255,255,255,.75)">Zeit für etwas Neues?</span>
+    <h2>Gönnen Sie sich einen Termin.</h2>
+    <p>Rufen Sie uns an oder schreiben Sie uns – wir freuen uns auf Sie.</p>
+    <a href="#kontakt" class="btn btn-light">Jetzt Termin anfragen</a>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section class="section" id="kontakt">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Kontakt</span>
+      <h2>So finden Sie uns</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="info-row">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.4 2.1L8.1 9.7a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.4c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.9 2.2z"/></svg></span>
+          <div><div class="lbl">Telefon</div><div class="val">08031 000000</div></div>
+        </div>
+        <div class="info-row">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l9 7 9-7"/><rect x="3" y="5" width="18" height="14" rx="2"/></svg></span>
+          <div><div class="lbl">E-Mail</div><div class="val">hallo@salon-lumiere.de</div></div>
+        </div>
+        <div class="info-row">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <div><div class="lbl">Adresse</div><div class="val">Marktplatz 7 · 83022 Rosenheim</div></div>
+        </div>
+        <div class="info-row">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></span>
+          <div><div class="lbl">Termine</div><div class="val">Nach Vereinbarung – gern telefonisch</div></div>
+        </div>
+      </div>
+      <div class="hours-card">
+        <h3>Öffnungszeiten</h3>
+        <div class="hours-row"><span>Montag</span><span>geschlossen</span></div>
+        <div class="hours-row"><span>Di – Fr</span><span>9:00 – 18:30</span></div>
+        <div class="hours-row"><span>Samstag</span><span>9:00 – 14:00</span></div>
+        <div class="hours-row"><span>Sonntag</span><span>geschlossen</span></div>
+        <a href="tel:08031000000" class="btn btn-light">Jetzt anrufen</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <b>Salon Lumière</b>
+    <div class="fnote">© 2026 Salon Lumière · Beispielseite von Arntz Digital</div>
+  </div>
+</footer>
+
+<script>
+  const nav=document.getElementById('site-nav');
+  window.addEventListener('scroll',()=>{nav.classList.toggle('is-scrolled',window.scrollY>8);},{passive:true});
+  const t=document.getElementById('nav-toggle');
+  t.addEventListener('click',()=>nav.classList.toggle('is-open'));
+  document.querySelectorAll('#nav-links a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('is-open')));
+</script>
+</body>
+</html>
