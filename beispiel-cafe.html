@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Café Morgenrot — Rösterei &amp; Frühstückscafé</title>
+<meta name="description" content="Café Morgenrot – gemütliches Café mit eigener Rösterei, hausgemachtem Frühstück, Kuchen und bestem Kaffee. Mitten in Rosenheim." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --espresso:#3a2419; --coffee:#6f4429; --caramel:#b07a45; --latte:#d9b88f; --foam:#f0e0cb;
+    --cream:#fdf7ee; --cream-2:#f6ebda; --white:#fffdfa;
+    --ink:#33251b; --ink-soft:#6b584a; --ink-mute:#a08d7a;
+    --line:#ecdcc6;
+    --leaf:#7a8b5a;
+    --radius:16px; --radius-lg:26px;
+    --pad:clamp(22px,5vw,56px); --section-py:clamp(64px,9vw,120px); --container:1140px;
+    --ff-hand:'Caveat',cursive; --ff-display:'Poppins',sans-serif; --ff-body:'Poppins',sans-serif;
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; overflow-x:hidden; width:100%; }
+  body{ margin:0; background:var(--cream); color:var(--ink-soft); font-family:var(--ff-body); font-size:16.5px; line-height:1.7; font-weight:400; -webkit-font-smoothing:antialiased; overflow-x:hidden; width:100%; max-width:100%; }
+  h1,h2,h3{ font-family:var(--ff-display); color:var(--ink); margin:0; font-weight:700; line-height:1.15; letter-spacing:-.01em; }
+  p{ margin:0; }
+  a{ color:inherit; text-decoration:none; }
+  ul{ margin:0; padding:0; list-style:none; }
+  img,svg{ display:block; max-width:100%; }
+  button{ font-family:inherit; cursor:pointer; }
+  .container{ max-width:var(--container); margin:0 auto; padding-left:var(--pad); padding-right:var(--pad); }
+  :focus-visible{ outline:2px solid var(--coffee); outline-offset:3px; }
+  .hand{ font-family:var(--ff-hand); font-weight:600; }
+  .eyebrow{ font-family:var(--ff-hand); font-size:1.5rem; color:var(--caramel); margin-bottom:.2em; display:inline-block; }
+  .btn{ display:inline-flex; align-items:center; justify-content:center; gap:.5em; padding:.9em 1.9em; border-radius:999px; font-family:var(--ff-body); font-weight:600; font-size:.95rem; border:2px solid transparent; transition:.2s; white-space:nowrap; }
+  .btn-coffee{ background:var(--coffee); color:#fff; }
+  .btn-coffee:hover{ background:var(--espresso); transform:translateY(-2px); }
+  .btn-outline{ border-color:var(--coffee); color:var(--coffee); }
+  .btn-outline:hover{ background:var(--coffee); color:#fff; }
+  .btn-light{ border-color:rgba(255,255,255,.6); color:#fff; }
+  .btn-light:hover{ background:#fff; color:var(--espresso); }
+  nav{ position:sticky; top:0; z-index:50; background:rgba(253,247,238,0); transition:.3s; border-bottom:1px solid transparent; }
+  nav.is-scrolled{ background:rgba(253,247,238,.95); backdrop-filter:blur(10px); border-color:var(--line); }
+  .nav-inner{ display:flex; align-items:center; gap:1.5rem; padding:1.05rem var(--pad); max-width:var(--container); margin:0 auto; }
+  .brand{ display:flex; align-items:center; gap:.6em; margin-right:auto; }
+  .brand-mark{ width:44px; height:44px; border-radius:50%; background:var(--coffee); color:var(--foam); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .brand-mark svg{ width:23px; height:23px; }
+  .brand b{ font-family:var(--ff-display); font-weight:700; font-size:1.2rem; color:var(--ink); }
+  .nav-links{ display:flex; align-items:center; font-size:.95rem; color:var(--ink-soft); font-weight:500; }
+  .nav-links a{ margin-left:1.9rem; transition:color .2s; }
+  .nav-links a:first-child{ margin-left:0; }
+  .nav-links a:hover{ color:var(--coffee); }
+  .nav-cta{ padding:.6em 1.3em; font-size:.88rem; flex-shrink:0; }
+  .nav-toggle{ display:none; background:none; border:none; width:42px; height:42px; flex-direction:column; align-items:center; justify-content:center; gap:5px; }
+  .nav-toggle span{ width:23px; height:2px; background:var(--ink); border-radius:2px; }
+  .hero{ position:relative; background:linear-gradient(160deg, var(--espresso), var(--coffee)); color:var(--cream); overflow:hidden; }
+  .hero::before{ content:""; position:absolute; top:-20%; right:-10%; width:min(520px,65vw); height:min(520px,65vw); border-radius:50%; background:radial-gradient(circle, rgba(217,184,143,.18), transparent 66%); pointer-events:none; }
+  .hero-inner{ position:relative; z-index:1; max-width:var(--container); margin:0 auto; padding:clamp(60px,9vw,116px) var(--pad); }
+  .hero-grid{ display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(30px,5vw,60px); align-items:center; }
+  .hero .eyebrow{ color:var(--latte); }
+  .hero h1{ color:var(--cream); font-size:clamp(2.6rem,5.4vw,4.4rem); margin-bottom:.35em; }
+  .hero h1 em{ font-style:normal; color:var(--latte); }
+  .hero p{ font-size:clamp(1.05rem,1.6vw,1.2rem); color:rgba(253,247,238,.82); max-width:44ch; margin-bottom:2em; }
+  .hero-ctas{ display:flex; gap:1rem; flex-wrap:wrap; }
+  .hero-visual{ aspect-ratio:1; border-radius:var(--radius-lg); background:linear-gradient(150deg, var(--caramel), var(--espresso)); border:1px solid rgba(253,247,238,.15); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; color:rgba(253,247,238,.7); position:relative; }
+  .hero-visual svg{ width:66px; height:66px; }
+  .hero-visual .ph-note{ position:absolute; bottom:16px; left:0; right:0; text-align:center; font-size:.72rem; color:rgba(253,247,238,.5); }
+  .strip{ background:var(--espresso); color:var(--foam); }
+  .strip-inner{ max-width:var(--container); margin:0 auto; padding:20px var(--pad); display:flex; flex-wrap:wrap; gap:14px 40px; justify-content:center; font-size:.92rem; }
+  .strip-inner span{ display:inline-flex; align-items:center; gap:.55em; }
+  .strip-inner svg{ width:18px; height:18px; color:var(--latte); }
+  .section{ padding:var(--section-py) 0; }
+  .section-head{ max-width:600px; margin:0 auto clamp(40px,5vw,58px); text-align:center; }
+  .section-head h2{ font-size:clamp(2.2rem,4vw,3.2rem); margin-bottom:.2em; }
+  .section-head p{ font-size:1.05rem; color:var(--ink-soft); }
+  .offers{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+  .offer{ background:var(--white); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; transition:.2s; }
+  .offer:hover{ transform:translateY(-5px); box-shadow:0 22px 44px -28px rgba(58,36,25,.5); }
+  .offer-img{ aspect-ratio:3/2; background:linear-gradient(150deg, var(--foam), var(--latte)); display:flex; align-items:center; justify-content:center; color:var(--coffee); }
+  .offer:nth-child(2) .offer-img{ background:linear-gradient(150deg, var(--latte), var(--caramel)); color:#fff; }
+  .offer:nth-child(3) .offer-img{ background:linear-gradient(150deg, var(--foam), var(--leaf)); color:#fff; }
+  .offer-img svg{ width:50px; height:50px; }
+  .offer-body{ padding:22px 24px; }
+  .offer h3{ font-size:1.35rem; margin-bottom:.3em; }
+  .offer p{ font-size:.92rem; color:var(--ink-soft); }
+  .about-sec{ background:var(--cream-2); }
+  .about-grid{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(32px,5vw,64px); align-items:center; }
+  .about-visual{ aspect-ratio:4/5; border-radius:var(--radius-lg); background:linear-gradient(150deg, var(--coffee), var(--espresso)); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; color:rgba(253,247,238,.6); }
+  .about-visual svg{ width:56px; height:56px; }
+  .about-text .eyebrow{ color:var(--caramel); }
+  .about-text h2{ font-size:clamp(2rem,3.6vw,2.8rem); margin-bottom:.5em; }
+  .about-text p{ margin-bottom:1em; color:var(--ink-soft); }
+  .contact-sec{ background:linear-gradient(160deg, var(--coffee), var(--espresso)); color:var(--cream); }
+  .contact-grid{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(32px,5vw,60px); }
+  .contact-sec .eyebrow{ color:var(--latte); }
+  .contact-sec h2{ color:var(--cream); font-size:clamp(2rem,3.6vw,2.8rem); margin-bottom:.4em; }
+  .contact-sec .lead{ color:rgba(253,247,238,.82); margin-bottom:1.6em; max-width:40ch; }
+  .cinfo-row{ display:flex; gap:14px; align-items:flex-start; padding:15px 0; border-bottom:1px solid rgba(253,247,238,.14); }
+  .cinfo-row:last-child{ border-bottom:none; }
+  .cinfo-row .ic{ width:42px; height:42px; border-radius:50%; background:rgba(253,247,238,.1); color:var(--latte); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .cinfo-row .ic svg{ width:19px; height:19px; }
+  .cinfo-row .lbl{ font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color:rgba(253,247,238,.55); }
+  .cinfo-row .val{ color:var(--cream); font-size:1.02rem; font-weight:600; }
+  .hours-card{ background:var(--white); color:var(--ink); border-radius:var(--radius-lg); padding:clamp(28px,3vw,40px); }
+  .hours-card h3{ font-size:1.5rem; margin-bottom:1em; }
+  .hours-row{ display:flex; justify-content:space-between; padding:.6em 0; border-bottom:1px solid var(--line); font-size:.98rem; }
+  .hours-row:last-child{ border-bottom:none; }
+  .hours-row span:first-child{ color:var(--ink-soft); font-weight:500; }
+  .hours-row span:last-child{ color:var(--coffee); font-weight:600; }
+  .hours-card .btn{ width:100%; margin-top:1.4em; }
+  footer{ background:var(--espresso); color:rgba(253,247,238,.5); }
+  .footer-inner{ max-width:var(--container); margin:0 auto; padding:34px var(--pad); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; }
+  .footer-inner .fb{ display:flex; align-items:center; gap:.6em; color:var(--cream); }
+  .footer-inner .fb svg{ width:22px; height:22px; color:var(--latte); }
+  .footer-inner .fb b{ font-family:var(--ff-display); font-size:1.1rem; }
+  .footer-inner .fnote{ font-size:.82rem; }
+  @media (max-width:900px){
+    .hero-grid{ grid-template-columns:1fr; }
+    .hero-visual{ max-width:340px; order:-1; }
+    .offers{ grid-template-columns:repeat(2,1fr); }
+    .about-grid{ grid-template-columns:1fr; }
+    .about-visual{ max-width:340px; order:-1; }
+    .contact-grid{ grid-template-columns:1fr; }
+  }
+  @media (max-width:780px){
+    .nav-links{ display:none; position:absolute; top:100%; left:0; right:0; background:rgba(253,247,238,.98); backdrop-filter:blur(10px); flex-direction:column; align-items:flex-start; border-bottom:1px solid var(--line); padding:8px var(--pad) 18px; }
+    .nav-links a{ margin-left:0; padding:.9em 0; width:100%; border-bottom:1px solid var(--line); }
+    .nav-links a:last-child{ border-bottom:none; }
+    nav.is-open .nav-links{ display:flex; }
+    .nav-toggle{ display:flex; }
+    .nav-cta{ display:none; }
+  }
+  @media (max-width:600px){
+    .offers{ grid-template-columns:1fr; }
+    .hero-ctas .btn{ width:100%; }
+  }
+</style>
+</head>
+<body>
+<nav id="site-nav">
+  <div class="nav-inner">
+    <a href="#" class="brand">
+      <span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a3 3 0 0 1 0 6h-1M4 8h14v6a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5z"/><path d="M8 2c-.5 1 .5 2 0 3M12 2c-.5 1 .5 2 0 3"/></svg></span>
+      <b>Café Morgenrot</b>
+    </a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menü"><span></span><span></span><span></span></button>
+    <div class="nav-links" id="nav-links">
+      <a href="#angebot">Angebot</a>
+      <a href="#ueber-uns">Über uns</a>
+      <a href="#kontakt">Öffnungszeiten</a>
+    </div>
+    <a href="#kontakt" class="btn btn-coffee nav-cta">Besuch uns</a>
+  </div>
+</nav>
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow">Guten Morgen!</span>
+        <h1>Zeit für <em>guten</em> Kaffee.</h1>
+        <p>Frisch geröstet, mit Liebe zubereitet: Im Café Morgenrot findest du besten Kaffee, hausgemachtes Frühstück und einen Ort zum Verweilen.</p>
+        <div class="hero-ctas">
+          <a href="#angebot" class="btn btn-light">Unser Angebot</a>
+          <a href="#kontakt" class="btn btn-outline" style="border-color:rgba(255,255,255,.6);color:#fff">Öffnungszeiten</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a3 3 0 0 1 0 6h-1M4 8h14v6a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5z"/><path d="M8 2c-.5 1 .5 2 0 3M12 2c-.5 1 .5 2 0 3"/></svg>
+        <span>Café / Atmosphäre</span>
+        <div class="ph-note">Platzhalter – hier kommt ein Foto deines Cafés hin</div>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="strip">
+  <div class="strip-inner">
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Eigene Rösterei</span>
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Hausgemachte Kuchen</span>
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Frühstück den ganzen Tag</span>
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Sonnenterrasse</span>
+  </div>
+</div>
+<section class="section" id="angebot">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Was wir lieben</span>
+      <h2>Unser Angebot</h2>
+      <p>Alles frisch, alles mit Herz – vom ersten Espresso bis zum Stück Kuchen.</p>
+    </div>
+    <div class="offers">
+      <div class="offer"><div class="offer-img"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a3 3 0 0 1 0 6h-1M4 8h14v6a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5z"/><path d="M8 2c-.5 1 .5 2 0 3M12 2c-.5 1 .5 2 0 3"/></svg></div><div class="offer-body"><h3>Kaffee &amp; Espresso</h3><p>Eigene Röstung, von Barista-Hand zubereitet – auch zum Mitnehmen.</p></div></div>
+      <div class="offer"><div class="offer-img"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16v-6a8 8 0 0 0-16 0z"/><path d="M12 6V3M9 6l-1-2M15 6l1-2"/></svg></div><div class="offer-body"><h3>Frühstück</h3><p>Von knusprigen Croissants bis zum herzhaften Bauernfrühstück.</p></div></div>
+      <div class="offer"><div class="offer-img"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21h16M6 21V9a6 6 0 0 1 12 0v12M9 9V7M15 9V7"/></svg></div><div class="offer-body"><h3>Kuchen &amp; Torten</h3><p>Täglich frisch gebacken – von der Sachertorte bis zum Käsekuchen.</p></div></div>
+      <div class="offer"><div class="offer-img"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h18l-2 8H5z"/><path d="M12 11V7a3 3 0 0 1 6 0"/></svg></div><div class="offer-body"><h3>Snacks &amp; Bowls</h3><p>Frische Bowls, belegte Bagels und kleine Leckereien für zwischendurch.</p></div></div>
+      <div class="offer"><div class="offer-img"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v7a4 4 0 0 0 8 0V2M12 13v9"/></svg></div><div class="offer-body"><h3>Kalte Getränke</h3><p>Hausgemachte Limonaden, Eiskaffee und frische Smoothies.</p></div></div>
+      <div class="offer"><div class="offer-img"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-6M2 7h20l-2 5H4z M12 7V4"/></svg></div><div class="offer-body"><h3>Kaffee to go &amp; Bohnen</h3><p>Nimm unseren Kaffee mit nach Hause – als Bohne oder gemahlen.</p></div></div>
+    </div>
+  </div>
+</section>
+<section class="section about-sec" id="ueber-uns">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/></svg>
+        <span>Foto vom Team / Café</span>
+      </div>
+      <div class="about-text">
+        <span class="eyebrow">Unsere Geschichte</span>
+        <h2>Ein Ort zum Ankommen.</h2>
+        <p>Café Morgenrot ist mehr als nur ein Café – es ist ein Wohnzimmer für die Nachbarschaft. Bei uns rösten wir unseren Kaffee selbst und backen jeden Morgen frisch.</p>
+        <p>Ob zum Arbeiten, für ein Treffen mit Freunden oder einfach zum Genießen – bei uns bist du immer willkommen. Nimm dir Zeit, wir haben sie auch.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section contact-sec" id="kontakt">
+  <div class="container">
+    <div class="contact-grid">
+      <div>
+        <span class="eyebrow">Besuch uns</span>
+        <h2>Wir freuen uns auf dich</h2>
+        <p class="lead">Komm vorbei, riech den frischen Kaffee und lass es dir gut gehen. Für Reservierungen oder Kuchenbestellungen ruf gern an.</p>
+        <div class="cinfo">
+          <div class="cinfo-row"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.4 2.1L8.1 9.7a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.4c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.9 2.2z"/></svg></span><div><div class="lbl">Telefon</div><div class="val">08031 000000</div></div></div>
+          <div class="cinfo-row"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span><div><div class="lbl">Adresse</div><div class="val">Sonnenstraße 8 · 83022 Rosenheim</div></div></div>
+          <div class="cinfo-row"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></span><div><div class="lbl">Instagram</div><div class="val">@cafe.morgenrot</div></div></div>
+        </div>
+      </div>
+      <div class="hours-card">
+        <h3>Öffnungszeiten</h3>
+        <div class="hours-row"><span>Mo – Fr</span><span>7:30 – 18:00</span></div>
+        <div class="hours-row"><span>Samstag</span><span>8:00 – 18:00</span></div>
+        <div class="hours-row"><span>Sonntag</span><span>9:00 – 17:00</span></div>
+        <a href="tel:08031000000" class="btn btn-coffee">Tisch reservieren</a>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="footer-inner">
+    <div class="fb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a3 3 0 0 1 0 6h-1M4 8h14v6a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5z"/><path d="M8 2c-.5 1 .5 2 0 3M12 2c-.5 1 .5 2 0 3"/></svg><b>Café Morgenrot</b></div>
+    <div class="fnote">© 2026 Café Morgenrot · Beispielseite von Arntz Digital</div>
+  </div>
+</footer>
+<script>
+  const nav=document.getElementById('site-nav');
+  window.addEventListener('scroll',()=>{nav.classList.toggle('is-scrolled',window.scrollY>8);},{passive:true});
+  const t=document.getElementById('nav-toggle');
+  t.addEventListener('click',()=>nav.classList.toggle('is-open'));
+  document.querySelectorAll('#nav-links a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('is-open')));
+</script>
+</body>
+</html>
